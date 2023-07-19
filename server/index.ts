@@ -5,7 +5,7 @@ import connection from "./db";
 config();
 
 const app :Express = express();
-const port : number = parseInt(process.env.PORT!, 10);
+const port : number = parseInt(process.env.PORT!, 10) || 5000;
 
 app.use(express.json());
 app.listen(port, async () => {
