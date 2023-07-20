@@ -11,6 +11,10 @@ class Basket extends Model {
     public id! : number;
 }
 
+class Basket_Device extends Model {
+    public id! : number;
+}
+
 User.init(
     {
         id:{
@@ -47,5 +51,18 @@ Basket.init(
     {
         sequelize,
         modelName: "BASKET"
+    }
+)
+Basket_Device.init(
+    {
+        id:{
+            type :DataTypes.INTEGER,
+            primaryKey: true,
+            autoIncrement:true,
+        },
+    },
+    {
+        sequelize,
+        modelName: "Basket_Device"
     }
 )
