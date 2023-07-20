@@ -7,6 +7,9 @@ class User extends Model {
     public password! : number;
     public role! : string;
 }
+class Basket extends Model {
+    public id! : number;
+}
 
 User.init(
     {
@@ -30,5 +33,19 @@ User.init(
     {
         sequelize,
         modelName: "USER"
+    }
+)
+
+Basket.init(
+    {
+        id:{
+            type :DataTypes.INTEGER,
+            primaryKey: true,
+            autoIncrement:true,
+        },
+    },
+    {
+        sequelize,
+        modelName: "BASKET"
     }
 )
