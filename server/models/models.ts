@@ -35,6 +35,12 @@ class Rating extends Model {
     public id!: number;
     public rate!: number;
 }
+class Device_Info extends Model {
+    public id!: number;
+    public title!: string;
+    public description!: string;
+}
+
 
 User.init(
     {
@@ -166,6 +172,28 @@ Rating.init(
             type: DataTypes.INTEGER,
             allowNull: false
         },
+    },
+    {
+        sequelize,
+        modelName: "Brand"
+    }
+)
+
+Device_Info.init(
+    {
+        id: {
+            type: DataTypes.INTEGER,
+            primaryKey: true,
+            autoIncrement: true,
+        },
+        title: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        description: {
+            type: DataTypes.STRING,
+            allowNull: false
+        }
     },
     {
         sequelize,
