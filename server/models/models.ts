@@ -25,8 +25,12 @@ class Device extends Model {
 }
 class Type extends Model {
     public id!: number;
+    public name!: string;
 }
-
+class Brand extends Model {
+    public id!: number;
+    public name!: string;
+}
 User.init(
     {
         id: {
@@ -116,9 +120,32 @@ Type.init(
             primaryKey: true,
             autoIncrement: true,
         },
+        name: {
+            type: DataTypes.STRING,
+            unique: true,
+            allowNull: false
+        },
     },
     {
         sequelize,
         modelName: "Type"
+    }
+)
+Brand.init(
+    {
+        id: {
+            type: DataTypes.INTEGER,
+            primaryKey: true,
+            autoIncrement: true,
+        },
+        name: {
+            type: DataTypes.STRING,
+            unique: true,
+            allowNull: false
+        },
+    },
+    {
+        sequelize,
+        modelName: "Brand"
     }
 )
