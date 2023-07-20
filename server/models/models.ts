@@ -41,6 +41,9 @@ class Device_Info extends Model {
     public description!: string;
 }
 
+class Type_Brand extends Model {
+    public id!: number;
+}
 
 User.init(
     {
@@ -175,7 +178,7 @@ Rating.init(
     },
     {
         sequelize,
-        modelName: "Brand"
+        modelName: "Rating"
     }
 )
 
@@ -197,7 +200,21 @@ Device_Info.init(
     },
     {
         sequelize,
-        modelName: "Brand"
+        modelName: "Device_Info"
+    }
+)
+
+Type_Brand.init(
+    {
+        id: {
+            type: DataTypes.INTEGER,
+            primaryKey: true,
+            autoIncrement: true,
+        },
+    },
+    {
+        sequelize,
+        modelName: "Type_Brand"
     }
 )
 
@@ -224,3 +241,18 @@ Basket_Device.belongsTo(Device)
 
 Device.hasMany(Device_Info, {as: 'info'});
 Device_Info.belongsTo(Device)
+
+Type.belongsToMany(Brand, {through: Type_Brand })
+Brand.belongsToMany(Type, {through: Type_Brand })
+
+export default {
+    User,
+    Basket,
+    Basket_Device,
+    Device,
+    Type,
+    Brand,
+    Rating,
+    Device_Info,
+    Type_Brand,
+};
