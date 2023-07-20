@@ -2,67 +2,107 @@ import sequelize from "../db_sequalize";
 import {Model, DataTypes} from "sequelize";
 
 class User extends Model {
-    public id! : number;
-    public email! : string;
-    public password! : number;
-    public role! : string;
+    public id!: number;
+    public email!: string;
+    public password!: number;
+    public role!: string;
 }
+
 class Basket extends Model {
-    public id! : number;
+    public id!: number;
 }
 
 class Basket_Device extends Model {
-    public id! : number;
+    public id!: number;
+}
+
+class Device extends Model {
+    public id!: number;
+    public name!: string;
+    public price!: number;
+    public rating!: number;
+    public img!: string;
 }
 
 User.init(
     {
-        id:{
-            type :DataTypes.INTEGER,
+        id: {
+            type: DataTypes.INTEGER,
             primaryKey: true,
-            autoIncrement:true,
+            autoIncrement: true,
         },
-        email:{
+        email: {
             type: DataTypes.STRING,
-            unique:true
+            unique: true
         },
-        password:{
-            type : DataTypes.STRING
+        password: {
+            type: DataTypes.STRING
         },
-        role:{
-            type : DataTypes.STRING,
-            defaultValue : "USER"
+        role: {
+            type: DataTypes.STRING,
+            defaultValue: "USER"
         }
     },
     {
         sequelize,
-        modelName: "USER"
+        modelName: "User"
     }
 )
 
 Basket.init(
     {
-        id:{
-            type :DataTypes.INTEGER,
+        id: {
+            type: DataTypes.INTEGER,
             primaryKey: true,
-            autoIncrement:true,
+            autoIncrement: true,
         },
     },
     {
         sequelize,
-        modelName: "BASKET"
+        modelName: "Basket"
     }
 )
 Basket_Device.init(
     {
-        id:{
-            type :DataTypes.INTEGER,
+        id: {
+            type: DataTypes.INTEGER,
             primaryKey: true,
-            autoIncrement:true,
+            autoIncrement: true,
         },
     },
     {
         sequelize,
         modelName: "Basket_Device"
+    }
+)
+
+Device.init(
+    {
+        id: {
+            type: DataTypes.INTEGER,
+            primaryKey: true,
+            autoIncrement: true,
+        },
+        name: {
+            type: DataTypes.STRING,
+            unique: true,
+            allowNull: false
+        },
+        price: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
+        rating: {
+            type: DataTypes.INTEGER,
+            defaultValue: 0,
+        },
+        img: {
+            type: DataTypes.STRING,
+            allowNull: false
+        }
+    },
+    {
+        sequelize,
+        modelName: "Device"
     }
 )
