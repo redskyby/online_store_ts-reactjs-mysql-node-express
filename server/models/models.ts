@@ -23,6 +23,9 @@ class Device extends Model {
     public rating!: number;
     public img!: string;
 }
+class Type extends Model {
+    public id!: number;
+}
 
 User.init(
     {
@@ -104,5 +107,18 @@ Device.init(
     {
         sequelize,
         modelName: "Device"
+    }
+)
+Type.init(
+    {
+        id: {
+            type: DataTypes.INTEGER,
+            primaryKey: true,
+            autoIncrement: true,
+        },
+    },
+    {
+        sequelize,
+        modelName: "Type"
     }
 )
