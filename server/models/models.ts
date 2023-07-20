@@ -31,6 +31,11 @@ class Brand extends Model {
     public id!: number;
     public name!: string;
 }
+class Rating extends Model {
+    public id!: number;
+    public rate!: number;
+}
+
 User.init(
     {
         id: {
@@ -141,6 +146,24 @@ Brand.init(
         name: {
             type: DataTypes.STRING,
             unique: true,
+            allowNull: false
+        },
+    },
+    {
+        sequelize,
+        modelName: "Brand"
+    }
+)
+
+Rating.init(
+    {
+        id: {
+            type: DataTypes.INTEGER,
+            primaryKey: true,
+            autoIncrement: true,
+        },
+        rate: {
+            type: DataTypes.INTEGER,
             allowNull: false
         },
     },
