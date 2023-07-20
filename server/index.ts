@@ -1,7 +1,8 @@
 import express, {Express} from 'express';
 import {config} from 'dotenv';
 import connection from "./db";
-import sequelize from "./db_sequalize";
+import sequelize  from "./db_sequalize";
+import models from "./models/models";
 
 config();
 
