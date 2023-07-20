@@ -200,3 +200,27 @@ Device_Info.init(
         modelName: "Brand"
     }
 )
+
+User.hasOne(Basket)
+Basket.belongsTo(User)
+
+User.hasMany(Rating)
+Rating.belongsTo(User)
+
+Basket.hasMany(Basket_Device)
+Basket_Device.belongsTo(Basket)
+
+Type.hasMany(Device)
+Device.belongsTo(Type)
+
+Brand.hasMany(Device)
+Device.belongsTo(Brand)
+
+Device.hasMany(Rating)
+Rating.belongsTo(Device)
+
+Device.hasMany(Basket_Device)
+Basket_Device.belongsTo(Device)
+
+Device.hasMany(Device_Info, {as: 'info'});
+Device_Info.belongsTo(Device)
