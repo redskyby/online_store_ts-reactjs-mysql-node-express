@@ -254,5 +254,5 @@ export default {
     Brand,
     Rating,
     Device_Info,
-    Type_Brand,
+    Type_Brand
 };
