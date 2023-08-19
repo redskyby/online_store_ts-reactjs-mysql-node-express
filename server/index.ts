@@ -3,7 +3,7 @@ import {config} from 'dotenv';
 import sequelize  from "./db_sequalize";
 import models from "./models/models";
 import cors from 'cors';
-import routes from "./routes";
+import routes from "./routes/index";
 config();
 
 const app: Express = express();
