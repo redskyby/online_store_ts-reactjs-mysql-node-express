@@ -13,10 +13,10 @@ const port: number = parseInt(process.env.PORT!, 10) || 5000;
 app.use(cors());
 app.use(express.json());
 app.use('/api/' , routes);
+
 //MiddleWare должен быть в самом конце.
 //errorHandlingMiddleware -- замыкающий
 app.use(errorHandlingMiddleware);
-
 const start = async () => {
     try {
         await sequelize.authenticate();
