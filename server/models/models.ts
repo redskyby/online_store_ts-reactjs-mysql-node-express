@@ -23,18 +23,22 @@ class Device extends Model {
     public rating!: number;
     public img!: string;
 }
+
 class Type extends Model {
     public id!: number;
     public name!: string;
 }
+
 class Brand extends Model {
     public id!: number;
     public name!: string;
 }
+
 class Rating extends Model {
     public id!: number;
     public rate!: number;
 }
+
 class Device_Info extends Model {
     public id!: number;
     public title!: string;
@@ -242,8 +246,8 @@ Basket_Device.belongsTo(Device)
 Device.hasMany(Device_Info, {as: 'info'});
 Device_Info.belongsTo(Device)
 
-Type.belongsToMany(Brand, {through: Type_Brand })
-Brand.belongsToMany(Type, {through: Type_Brand })
+Type.belongsToMany(Brand, {through: Type_Brand})
+Brand.belongsToMany(Type, {through: Type_Brand})
 
 export default {
     User,

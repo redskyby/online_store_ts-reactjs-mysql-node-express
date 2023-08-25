@@ -1,4 +1,5 @@
 import {Router} from 'express';
+
 const router = Router();
 
 import deviceRoutes from "./deviceRoutes";
@@ -7,9 +8,9 @@ import typeRoutes from './typeRoutes';
 import userRoutes from "./userRoutes";
 
 
-router.use('/user',userRoutes);
-router.use('/type',typeRoutes);
-router.use('/brand',brandRoutes);
-router.use('/device',deviceRoutes);
+router.use('/user', userRoutes);
+router.use('/type', typeRoutes);
+router.use('/brand', brandRoutes);
+router.use('/device', deviceRoutes);
 
 export default router;
