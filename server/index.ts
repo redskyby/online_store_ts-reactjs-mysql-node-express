@@ -22,7 +22,6 @@ app.use(errorHandlingMiddleware);
 const start = async () => {
     try {
         await sequelize.authenticate();
-        console.log("есть подключение!");
         await sequelize.sync();
         app.listen(port, () => {
             console.log(`Server running at http://localhost:${port}`);
