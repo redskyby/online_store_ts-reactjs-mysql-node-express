@@ -6,6 +6,8 @@ import cors from 'cors';
 import routes from "./routes/index";
 import errorHandlingMiddleware from "./middleware/ErrorHandlingMiddleware";
 import fileUpload from 'express-fileupload';
+import * as path from 'path';
+
 config();
 
 const app: Express = express();
@@ -13,6 +15,7 @@ const port: number = parseInt(process.env.PORT!, 10) || 5000;
 
 app.use(cors());
 app.use(express.json());
+app.use(express.static(path.resolve(__dirname,"static")));
 app.use(fileUpload({}));
 app.use('/api/' , routes);
 
