@@ -5,6 +5,7 @@ import models from "./models/models";
 import cors from 'cors';
 import routes from "./routes/index";
 import errorHandlingMiddleware from "./middleware/ErrorHandlingMiddleware";
+import fileUpload from 'express-fileupload';
 config();
 
 const app: Express = express();
@@ -12,6 +13,7 @@ const port: number = parseInt(process.env.PORT!, 10) || 5000;
 
 app.use(cors());
 app.use(express.json());
+app.use(fileUpload({}));
 app.use('/api/' , routes);
 
 //MiddleWare должен быть в самом конце.
