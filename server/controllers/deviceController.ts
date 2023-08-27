@@ -8,13 +8,13 @@ import ApiError from "../error/ApiError";
 class deviceController {
     async create(req: Request, res: Response, next: NextFunction) {
         try {
-            const {name, price, brandId, typeId, info} = req.body;
+            const {name, price, brandId, TypeId, info} = req.body;
             const img = req.files?.img as UploadedFile;
             let fileName: string = uuidv4() + ".jpg";
             await img.mv(path.resolve(__dirname, '..', 'static', fileName));
 
             const device = await models.Device.create(
-                {name, price, brandId, typeId, info, img: fileName}
+                {name, price, brandId, TypeId, info, img: fileName}
             );
 
             return res.json(device);
@@ -29,7 +29,21 @@ class deviceController {
     }
 
     async getAll(req: Request, res: Response) {
-
+        const {brandId , typeId} = req.query;
+        let devises ;
+        if(!brandId && !typeId){
+            devises = await  models.Device.findAll();
+        }
+        if(brandId && !typeId){
+            devises = await  models.Device.findAll({where : {brandId}});
+        }
+        if(!brandId && typeId){
+            devises = await  models.Device.findAll({where : {typeId}});
+        }
+        if(brandId && typeId){
+            devises = await  models.Device.findAll({where : {typeId , brandId}});
+        }
+        return res.json(devises);
     }
 
     async getOne(req: Request, res: Response) {
