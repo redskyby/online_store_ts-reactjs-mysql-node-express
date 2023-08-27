@@ -84,7 +84,7 @@ Basket.init(
     },
     {
         sequelize,
-        modelName: "Basket"
+        modelName: "basket"
     }
 )
 Basket_Device.init(
@@ -97,7 +97,7 @@ Basket_Device.init(
     },
     {
         sequelize,
-        modelName: "Basket_Device"
+        modelName: "basket_device"
     }
 )
 
@@ -128,7 +128,7 @@ Device.init(
     },
     {
         sequelize,
-        modelName: "Device"
+        modelName: "device"
     }
 )
 Type.init(
@@ -146,7 +146,7 @@ Type.init(
     },
     {
         sequelize,
-        modelName: "Type"
+        modelName: "type"
     }
 )
 Brand.init(
@@ -164,7 +164,7 @@ Brand.init(
     },
     {
         sequelize,
-        modelName: "Brand"
+        modelName: "brand"
     }
 )
 
@@ -182,7 +182,7 @@ Rating.init(
     },
     {
         sequelize,
-        modelName: "Rating"
+        modelName: "rating"
     }
 )
 
@@ -204,7 +204,7 @@ Device_Info.init(
     },
     {
         sequelize,
-        modelName: "Device_Info"
+        modelName: "device_info"
     }
 )
 
@@ -218,7 +218,7 @@ Type_Brand.init(
     },
     {
         sequelize,
-        modelName: "Type_Brand"
+        modelName: "type_Brand"
     }
 )
 
