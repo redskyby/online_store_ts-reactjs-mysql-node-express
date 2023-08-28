@@ -24,7 +24,6 @@ class deviceController {
             } else {
                 next(console.log(e));
             }
-
         }
     }
 
