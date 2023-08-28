@@ -28,19 +28,19 @@ class deviceController {
     }
 
     async getAll(req: Request, res: Response) {
-        const {brandId , typeId} = req.query;
-        let devises ;
-        if(!brandId && !typeId){
-            devises = await  models.Device.findAll();
+        let {brandId, typeId, limit = 9, page = 1} = req.query;
+        let devises;
+        if (!brandId && !typeId) {
+            devises = await models.Device.findAll();
         }
-        if(brandId && !typeId){
-            devises = await  models.Device.findAll({where : {brandId}});
+        if (brandId && !typeId) {
+            devises = await models.Device.findAll({where: {brandId}});
         }
-        if(!brandId && typeId){
-            devises = await  models.Device.findAll({where : {typeId}});
+        if (!brandId && typeId) {
+            devises = await models.Device.findAll({where: {typeId}});
         }
-        if(brandId && typeId){
-            devises = await  models.Device.findAll({where : {typeId , brandId}});
+        if (brandId && typeId) {
+            devises = await models.Device.findAll({where: {typeId, brandId}});
         }
         return res.json(devises);
     }
