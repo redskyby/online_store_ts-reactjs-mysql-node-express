@@ -28,7 +28,6 @@ class deviceController {
                 );
             }
 
-
             return res.json(device);
         } catch (e) {
             if (typeof e === 'string') {
@@ -65,8 +64,8 @@ class deviceController {
         const device = await models.Device.findOne(
             {
                 where: {id},
-                include : [{
-                    model : models.Device_Info , as : 'info'
+                include: [{
+                    model: models.Device_Info, as: 'info'
                 }]
             }
         )
