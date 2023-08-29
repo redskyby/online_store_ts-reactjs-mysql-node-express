@@ -34,16 +34,16 @@ class deviceController {
         limit = Number(limit)
         let offset: number = Number(page) * limit - limit;
         if (!brandId && !typeId) {
-            devises = await models.Device.findAll({limit, offset});
+            devises = await models.Device.findAndCountAll({limit, offset});
         }
         if (brandId && !typeId) {
-            devises = await models.Device.findAll({where: {brandId}, limit, offset});
+            devises = await models.Device.findAndCountAll({where: {brandId}, limit, offset});
         }
         if (!brandId && typeId) {
-            devises = await models.Device.findAll({where: {typeId}, limit, offset});
+            devises = await models.Device.findAndCountAll({where: {typeId}, limit, offset});
         }
         if (brandId && typeId) {
-            devises = await models.Device.findAll({where: {typeId, brandId}, limit, offset});
+            devises = await models.Device.findAndCountAll({where: {typeId, brandId}, limit, offset});
         }
         return res.json(devises);
     }
