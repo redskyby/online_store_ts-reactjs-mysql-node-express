@@ -61,7 +61,16 @@ class deviceController {
     }
 
     async getOne(req: Request, res: Response) {
-
+        const {id} = req.params;
+        const device = await models.Device.findOne(
+            {
+                where: {id},
+                include : [{
+                    model : models.Device_Info , as : 'info'
+                }]
+            }
+        )
+        return res.json(device);
     }
 }
 
