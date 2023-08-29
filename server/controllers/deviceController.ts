@@ -8,7 +8,7 @@ import ApiError from "../error/ApiError";
 class deviceController {
     async create(req: Request, res: Response, next: NextFunction) {
         try {
-            const {name, price, brandId, typeId, info} = req.body;
+            let {name, price, brandId, typeId, info} = req.body;
             const img = req.files?.img as UploadedFile;
             let fileName: string = uuidv4() + ".jpg";
             await img.mv(path.resolve(__dirname, '..', 'static', fileName));
@@ -16,6 +16,18 @@ class deviceController {
             const device = await models.Device.create(
                 {name, price, brandId, typeId, info, img: fileName}
             );
+
+            if (info) {
+                info = JSON.parse(info);
+                info.forEach((i: { title: string, description: string }) =>
+                    models.Device_Info.create({
+                        title: i.title,
+                        description: i.description,
+                        deviceId: device.id
+                    })
+                );
+            }
+
 
             return res.json(device);
         } catch (e) {
