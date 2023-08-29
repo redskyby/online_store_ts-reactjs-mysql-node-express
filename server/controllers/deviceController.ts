@@ -22,7 +22,8 @@ class deviceController {
             if (typeof e === 'string') {
                 next(ApiError.badRequest(e));
             } else {
-                next(console.log(e));
+                console.error(e);
+                next(e)
             }
         }
     }
