@@ -30,17 +30,19 @@ class deviceController {
     async getAll(req: Request, res: Response) {
         let {brandId, typeId, limit = 9, page = 1} = req.query;
         let devises;
+        limit = Number(limit)
+        let offset: number = Number(page) * limit - limit;
         if (!brandId && !typeId) {
-            devises = await models.Device.findAll();
+            devises = await models.Device.findAll({limit, offset});
         }
         if (brandId && !typeId) {
-            devises = await models.Device.findAll({where: {brandId}});
+            devises = await models.Device.findAll({where: {brandId}, limit, offset});
         }
         if (!brandId && typeId) {
-            devises = await models.Device.findAll({where: {typeId}});
+            devises = await models.Device.findAll({where: {typeId}, limit, offset});
         }
         if (brandId && typeId) {
-            devises = await models.Device.findAll({where: {typeId, brandId}});
+            devises = await models.Device.findAll({where: {typeId, brandId}, limit, offset});
         }
         return res.json(devises);
     }
