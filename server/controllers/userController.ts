@@ -1,6 +1,7 @@
 import {NextFunction, Request, Response} from "express";
 import ApiError from "../error/ApiError";
 
+
 class UserController {
     async registration(req: Request, res: Response) {
 
