@@ -4,7 +4,7 @@ import models from "../models/models";
 
 class UserController {
     async registration(req: Request, res: Response) {
-        const {email , password , role} = req.body;
+        const {email, password, role} = req.body;
 
     }
 
