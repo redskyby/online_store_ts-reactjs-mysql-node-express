@@ -41,7 +41,9 @@ class UserController {
             return next(ApiError.internal("Пользователь с такм email не существует!"));
         }
 
-        let comparePassword = bcrypt.compareSync(password, user.password.toString());
+        let comparePassword: boolean = bcrypt.compareSync(String(password), String(user.dataValues.password));
+
+        console.log(user)
         if (!comparePassword) {
             return next(ApiError.internal("Указан неверный пароль"));
         }
