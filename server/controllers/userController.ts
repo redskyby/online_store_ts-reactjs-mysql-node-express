@@ -29,17 +29,25 @@ class UserController {
         const hashPassword: string = await bcrypt.hash(password, 5);
         const user = await models.User.create({email, role, password: hashPassword});
         const basket = await models.Basket.create({userId: user.id});
-        // const token: string = jwt.sign(
-        //     {id: user.id, email: user.email, role},
-        //     process.env.SECRET_KEY!,
-        //     {expiresIn: '24h'}
-        // );
-        const token : string = generateJwt(user.id , user.email , user.role);
+
+        const token: string = generateJwt(user.id, user.email, user.role);
         return res.json({token});
     }
 
-    async login(req: Request, res: Response) {
+    async login(req: Request, res: Response, next: NextFunction) {
+        const {email, password} = req.body;
+        const user = await models.User.findOne({where: {email}});
+        if (!user) {
+            return next(ApiError.internal("Пользователь с такм email не существует!"));
+        }
 
+        let comparePassword = bcrypt.compareSync(password, user.password.toString());
+        if (!comparePassword) {
+            return next(ApiError.internal("Указан неверный пароль"));
+        }
+
+        const token = generateJwt(user.id, user.email, user.role);
+        return res.json({token});
     }
 
     async check(req: Request, res: Response, next: NextFunction) {
