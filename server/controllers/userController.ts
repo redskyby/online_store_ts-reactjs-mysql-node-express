@@ -19,11 +19,11 @@ class UserController {
     async registration(req: Request, res: Response, next: NextFunction) {
         const {email, password, role} = req.body;
         if (!email || !password) {
-            return next(ApiError.badRequest("Не коректный email или password!"));
+            return next(ApiError.badRequest("Некорректный email или password!"));
         }
         const candidate = await models.User.findOne({where: {email}})
         if (candidate) {
-            return next(ApiError.badRequest("Пользователь с такм email существует!"));
+            return next(ApiError.badRequest("Пользователь с таким email существует!"));
         }
 
         const hashPassword: string = await bcrypt.hash(password, 5);
@@ -38,7 +38,7 @@ class UserController {
         const {email, password} = req.body;
         const user = await models.User.findOne({where: {email}});
         if (!user) {
-            return next(ApiError.internal("Пользователь с такм email не существует!"));
+            return next(ApiError.internal("Пользователь с таким email не существует!"));
         }
 
         let comparePassword: boolean = bcrypt.compareSync(String(password), String(user.dataValues.password));
