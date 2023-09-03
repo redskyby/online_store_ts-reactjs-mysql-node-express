@@ -18,10 +18,15 @@ class UserController {
             return next(ApiError.badRequest("Пользователь с такм email существует!"));
         }
 
-        const hashPassword : string = await bcrypt.hash(password, 5);
+        const hashPassword: string = await bcrypt.hash(password, 5);
         const user = await models.User.create({email, role, password: hashPassword});
         const basket = await models.Basket.create({userId: user.id});
-        const jwToken = jwt.sign({id : user.id , email : user.email , role}, process.env.SECRET_KEY!);
+        const token: string = jwt.sign(
+            {id: user.id, email: user.email, role},
+            process.env.SECRET_KEY!,
+            {expiresIn: '24h'}
+        );
+        return res.json({token});
     }
 
     async login(req: Request, res: Response) {
