@@ -52,11 +52,11 @@ class UserController {
     }
 
     async check(req: Request, res: Response, next: NextFunction) {
-        const {id} = req.query;
-        if (!id) {
-            return next(ApiError.badRequest("Не задан ID!"));
-        }
-        res.json(id);
+        // const {id} = req.query;
+        // if (!id) {
+        //     return next(ApiError.badRequest("Не задан ID!"));
+        // }
+        // res.json(id);
     }
 }
 
