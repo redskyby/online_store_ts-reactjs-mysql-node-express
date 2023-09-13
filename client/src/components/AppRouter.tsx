@@ -27,7 +27,7 @@ const AppRouter = () => {
                     />
                 })
             }
-            <Route path="/" element={<Navigate to={SHOP_ROUTE}/>}/>
+            <Route path="*" element={<Navigate to={SHOP_ROUTE}/>}/>
         </Routes>
     );
 };
