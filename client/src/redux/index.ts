@@ -1,5 +1,5 @@
 import {combineReducers, configureStore} from "@reduxjs/toolkit";
-import isAuth from "./slice/isAuth";
+import isAuth from "./slice/isAuthSlice";
 
 const rootReducer = combineReducers({
     isAuthToolkit : isAuth
