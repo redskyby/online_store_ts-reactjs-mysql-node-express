@@ -2,10 +2,12 @@ import React from 'react';
 import {Routes, Route, Navigate} from "react-router-dom";
 import {authRoutes, publicRoutes} from "../routes";
 import {SHOP_ROUTE} from "../utils/const";
-
+import {useSelector} from "react-redux";
+import {RootState} from "../redux";
 
 const AppRouter = () => {
-    const isAuth: boolean = false;
+
+    const isAuth: boolean = useSelector((state: RootState) => state.isAuthToolkit.isAuth);
 
     return (
         <Routes>

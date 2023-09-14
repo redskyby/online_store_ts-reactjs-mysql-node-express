@@ -14,12 +14,6 @@ const isAuthSlice = createSlice({
         },
         IS_SET_USER: (state, action: PayloadAction<object>) => {
             state.user = action.payload;
-        },
-        GET_IS_AUTH: (state) => {
-            state.isAuth;
-        },
-        GET_USER: (state) => {
-            state.user;
         }
     }
 })
@@ -27,7 +21,5 @@ const isAuthSlice = createSlice({
 export default isAuthSlice.reducer;
 export const {
     IS_SET_AUTH,
-    IS_SET_USER,
-    GET_IS_AUTH,
-    GET_USER
+    IS_SET_USER
 } = isAuthSlice.actions;
