@@ -1,8 +1,10 @@
 import {combineReducers, configureStore} from "@reduxjs/toolkit";
 import isAuth from "./slice/isAuthSlice";
+import device from "./slice/deviceSlice";
 
 const rootReducer = combineReducers({
-    isAuthToolkit : isAuth
+    isAuthToolkit : isAuth,
+    isDeviceToolkit : device
 })
 
 export const store = configureStore({
