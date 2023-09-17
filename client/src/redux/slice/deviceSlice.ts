@@ -20,7 +20,9 @@ const initialState = {
     ],
     brands: [
         {id: 1, name: 'Samsung'},
-        {id: 2, name: 'Apple'}
+        {id: 2, name: 'Apple'},
+        {id: 3, name: 'Lenovo'},
+        {id: 4, name: 'Asus'},
     ],
     device: [
         {id: 1, name: 'Iphone 12 pro', price: 25000, rating: 5, img: "img"},
@@ -51,7 +53,7 @@ const deviceSlice = createSlice({
             state.selectedType = action.payload;
         },
         SET_SELECTED_BRAND: (state, action: PayloadAction<Type_Brand>) => {
-            state.selectedType = action.payload;
+            state.selectedBrands = action.payload;
         }
     }
 })
