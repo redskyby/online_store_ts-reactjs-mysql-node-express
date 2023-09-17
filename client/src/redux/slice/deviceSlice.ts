@@ -27,7 +27,10 @@ const initialState = {
         {id: 2, name: 'Iphone 12 pro', price: 25000, rating: 5, img: "img"},
     ],
     selectedType: {
-        id : 0
+        id : -1
+    },
+    selectedBrands: {
+        id : -1
     }
 }
 
@@ -46,6 +49,9 @@ const deviceSlice = createSlice({
         },
         SET_SELECTED_TYPE: (state, action: PayloadAction<Type_Brand>) => {
             state.selectedType = action.payload;
+        },
+        SET_SELECTED_BRAND: (state, action: PayloadAction<Type_Brand>) => {
+            state.selectedType = action.payload;
         }
     }
 })
@@ -55,5 +61,6 @@ export const {
     SET_TYPES,
     SET_BRANDS,
     SET_DEVICE,
-    SET_SELECTED_TYPE
+    SET_SELECTED_TYPE,
+    SET_SELECTED_BRAND
 } = deviceSlice.actions;
