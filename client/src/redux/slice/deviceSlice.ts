@@ -26,7 +26,9 @@ const initialState = {
         {id: 1, name: 'Iphone 12 pro', price: 25000, rating: 5, img: "img"},
         {id: 2, name: 'Iphone 12 pro', price: 25000, rating: 5, img: "img"},
     ],
-    selectedType: {}
+    selectedType: {
+        id : 0
+    }
 }
 
 const deviceSlice = createSlice({
