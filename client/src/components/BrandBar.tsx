@@ -6,12 +6,13 @@ import {RootState} from "../redux";
 const BrandBar = () => {
     const brands = useSelector((state: RootState) => state.isDeviceToolkit.brands);
     return (
-        <Row className={'d-flex'}>
+        <Row className={'d-flex flex-row'}>
             {
                 brands.map(brand =>
                     <Card
-                        className={"pt-3"}
+                        className={"p-3 w-auto"}
                         key={brand.id}>
+
                         {brand.name}
                     </Card>
                 )
