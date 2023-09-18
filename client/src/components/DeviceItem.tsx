@@ -1,6 +1,7 @@
 import React from 'react';
 import {Card, Col, Image} from 'react-bootstrap';
-import star from '../assets/star.png';
+import star from "../assets/star.png";
+
 
 interface device {
     id: number,
