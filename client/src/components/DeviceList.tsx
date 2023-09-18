@@ -2,6 +2,7 @@ import React from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../redux";
 import {Row} from "react-bootstrap";
+import DeviceItem from "./DeviceItem";
 
 const DeviceList = () => {
     const devices = useSelector((state: RootState) => state.isDeviceToolkit.devices);
@@ -10,11 +11,11 @@ const DeviceList = () => {
 
     return (
         <Row className={"d-flex"}>
-            {/*{*/}
-            {/*    devices.map(device =>*/}
-            {/*        */}
-            {/*    )*/}
-            {/*}*/}
+            {
+                devices.map(device =>
+                    <DeviceItem key={device.id} {...device}/>
+                )
+            }
         </Row>
     );
 };

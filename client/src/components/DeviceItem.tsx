@@ -1,10 +1,28 @@
 import React from 'react';
+import {Card, Col, Image} from 'react-bootstrap';
 
-const DeviceItem = () => {
+interface device {
+    id: number,
+    name: string,
+    price: number,
+    rating: number,
+    img: string
+}
+
+
+const DeviceItem = (props: device) => {
     return (
-        <div>
-            
-        </div>
+        <Col md={3}>
+            <Card style={{width: 150, cursor: 'pointer'}} border={'light'}>
+                <Image width={150} height={150} src={props.img}/>
+                <div>
+                    Samsung...
+                </div>
+                <div>
+                    <div>{props.rating}</div>
+                </div>
+            </Card>
+        </Col>
     );
 };
 
