@@ -21,7 +21,6 @@ const TypeBar = () => {
                         onClick={() => dispatch(SET_SELECTED_TYPE(type))}
                     >
                         {type.name}
-
                     </ListGroupItem>
                 )
             }

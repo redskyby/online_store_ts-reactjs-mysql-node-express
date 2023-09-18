@@ -20,7 +20,6 @@ const BrandBar = () => {
                         onClick={() => dispatch(SET_SELECTED_BRAND(brand))}
                         border={brand.id === selectedBrand.id ? "danger" : "light"}
                     >
-
                         {brand.name}
                     </Card>
                 )
