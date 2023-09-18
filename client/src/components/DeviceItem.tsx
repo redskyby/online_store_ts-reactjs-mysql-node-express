@@ -1,5 +1,6 @@
 import React from 'react';
 import {Card, Col, Image} from 'react-bootstrap';
+import star from '../assets/star.png';
 
 interface device {
     id: number,
@@ -20,6 +21,7 @@ const DeviceItem = (props: device) => {
                 </div>
                 <div>
                     <div>{props.rating}</div>
+                    <Image src={star}/>
                 </div>
             </Card>
         </Col>
