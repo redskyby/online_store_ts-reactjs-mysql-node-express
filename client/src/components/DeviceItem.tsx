@@ -17,12 +17,17 @@ const DeviceItem = (props: device) => {
         <Col md={3}>
             <Card style={{width: 150, cursor: 'pointer'}} border={'light'}>
                 <Image width={150} height={150} src={props.img}/>
-                <div>
-                    Samsung...
+                <div className={"mt-1 d-flex text-black-50 align-items-center justify-content-between"}>
+                    <div>
+                        Samsung...
+                    </div>
+                    <div className={'d-flex align-items-center'}>
+                        <div className={"mr-1"}>{props.rating}</div>
+                        <Image width={18} height={18} src={star}/>
+                    </div>
                 </div>
                 <div>
-                    <div>{props.rating}</div>
-                    <Image src={star}/>
+                    {props.name}
                 </div>
             </Card>
         </Col>
