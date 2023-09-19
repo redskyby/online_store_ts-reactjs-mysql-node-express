@@ -27,6 +27,11 @@ const initialState = {
     devices: [
         {id: 1, name: 'Iphone 12 pro', price: 25000, rating: 5, img: "img"},
         {id: 2, name: 'Iphone 12 pro', price: 25000, rating: 5, img: "img"},
+        {id: 3, name: 'Iphone 12 pro', price: 25000, rating: 5, img: "img"},
+        {id: 4, name: 'Iphone 12 pro', price: 25000, rating: 5, img: "img"},
+        {id: 5, name: 'Iphone 12 pro', price: 25000, rating: 5, img: "img"},
+        {id: 6, name: 'Iphone 12 pro', price: 25000, rating: 5, img: "img"},
+        {id: 7, name: 'Iphone 12 pro', price: 25000, rating: 5, img: "img"},
     ],
     selectedType: {
         id : -1

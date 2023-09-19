@@ -1,6 +1,8 @@
 import React from 'react';
 import {Card, Col, Image} from 'react-bootstrap';
 import star from "../assets/star.png";
+import {useNavigate} from "react-router-dom";
+import {DEVICE_ROUTE} from "../utils/const";
 
 
 interface device {
@@ -13,8 +15,14 @@ interface device {
 
 
 const DeviceItem = (props: device) => {
+    const history = useNavigate();
+
     return (
-        <Col md={3}>
+        <Col
+            md={3}
+            className={"mt-3"}
+            onClick={() => history(DEVICE_ROUTE + '/' + props.id)}
+        >
             <Card style={{width: 150, cursor: 'pointer'}} border={'light'}>
                 <Image width={150} height={150} src={props.img}/>
                 <div className={"mt-1 d-flex text-black-50 align-items-center justify-content-between"}>
