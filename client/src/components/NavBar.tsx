@@ -21,7 +21,7 @@ const NavBar = () => {
             <Container>
                 <NavLink style={{color: 'white'}} to={SHOP_ROUTE}>КупиДевайс</NavLink>
                 {isAuth ?
-                    <Nav className="ml-auto" style={{color: 'white'}}>
+                    <Nav className="ms-auto" style={{color: 'white'}}>
                         <Button
                             variant={"outline-light"}
                             onClick={() => history(ADMIN_ROUTE)}
@@ -37,7 +37,7 @@ const NavBar = () => {
                         </Button>
                     </Nav>
                     :
-                    <Nav className="ml-auto" style={{color: 'white'}}>
+                    <Nav className="ms-auto" style={{color: 'white'}}>
                         <Button
                             variant={"outline-light"}
                             onClick={() => history(LOGIN_ROUTE)}>
