@@ -29,9 +29,9 @@ const NavBar = () => {
                             Админ панель
                         </Button>
                         <Button
+                            className={'ms-2'}
                             variant={"outline-light"}
                             onClick={() => logOut()}
-                            className="ml-2"
                         >
                             Выйти
                         </Button>
