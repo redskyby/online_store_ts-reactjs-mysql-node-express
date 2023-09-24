@@ -10,7 +10,7 @@ const CreateDevice = ({show, onHide}) => {
         >
             <ModalHeader closeButton>
                 <ModalTitle>
-                    Добавить тип
+                    Добавить устройство
                 </ModalTitle>
             </ModalHeader>
             <ModalBody>

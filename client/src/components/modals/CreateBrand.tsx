@@ -10,7 +10,7 @@ const CreateBrand = ({show, onHide}) => {
         >
             <ModalHeader closeButton>
                 <ModalTitle>
-                    Добавить тип
+                    Добавить бренд
                 </ModalTitle>
             </ModalHeader>
             <ModalBody>
