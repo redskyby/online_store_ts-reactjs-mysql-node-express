@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
-    Button,
+    Button, Col,
     Dropdown,
     Form,
     FormControl, FormGroup,
@@ -8,15 +8,20 @@ import {
     ModalBody,
     ModalFooter,
     ModalHeader,
-    ModalTitle
+    ModalTitle, Row
 } from "react-bootstrap";
 import {useSelector} from "react-redux";
 import {RootState} from "../../redux";
 
 
 const CreateDevice = ({show, onHide}) => {
-    const types = useSelector((state: RootState) => state.isDeviceToolkit.types)
-    const brands = useSelector((state: RootState) => state.isDeviceToolkit.brands)
+    const types = useSelector((state: RootState) => state.isDeviceToolkit.types);
+    const brands = useSelector((state: RootState) => state.isDeviceToolkit.brands);
+    const [info, setInfo] = useState<{ title: string; description: string; number: number; }[]>([]);
+
+    const addInfo = (): void => {
+        setInfo([...info , {title : '' , description : '' , number : Date.now()}])
+    }
 
     return (
         <Modal
@@ -67,6 +72,24 @@ const CreateDevice = ({show, onHide}) => {
                         />
 
                     </FormGroup>
+                    <Button
+                        className={"w-25 mt-3"}
+                        variant={"outline-dark"}
+                        onClick={addInfo}
+                    >
+                        Добавить новое свойство
+                    </Button>
+                    {
+                        info.map( i=>
+                            <Row>
+                                <Col md={4}>
+                                    <FormControl
+                                        
+                                    />
+                                </Col>
+                            </Row>
+                        )
+                    }
                 </Form>
             </ModalBody>
             <ModalFooter>
