@@ -20,7 +20,7 @@ const CreateDevice = ({show, onHide}) => {
     const [info, setInfo] = useState<{ title: string; description: string; number: number; }[]>([]);
 
     const addInfo = (): void => {
-        setInfo([...info , {title : '' , description : '' , number : Date.now()}])
+        setInfo([...info, {title: '', description: '', number: Date.now()}])
     }
 
     return (
@@ -80,12 +80,22 @@ const CreateDevice = ({show, onHide}) => {
                         Добавить новое свойство
                     </Button>
                     {
-                        info.map( i=>
-                            <Row>
+                        info.map(i =>
+                            <Row className={"mt-2"} key={i.number}>
                                 <Col md={4}>
                                     <FormControl
-                                        
+                                        placeholder={"Введите название свойства"}
                                     />
+                                </Col>
+                                <Col md={4}>
+                                    <FormControl
+                                        placeholder={"Введите описание свойства"}
+                                    />
+                                </Col>
+                                <Col md={4}>
+                                    <Button
+                                        variant={'outline-danger'}
+                                    >Удалить</Button>
                                 </Col>
                             </Row>
                         )
