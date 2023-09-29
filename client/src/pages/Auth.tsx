@@ -13,10 +13,10 @@ const Auth = () => {
     const click = async () => {
         if (isLogin) {
             const response = await login(email , password);
-            console.log(email , password);
+            console.log(response);
         } else {
             const response = await registration(email , password);
-            console.log(email , password);
+            console.log(response);
         }
     }
 
