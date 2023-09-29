@@ -1,11 +1,12 @@
 import React, {useState} from 'react';
 import {Button, Card, Col, Container, Form, Row} from "react-bootstrap";
-import {NavLink, useLocation} from "react-router-dom";
-import {LOGIN_ROUTE, REGISTRATION_ROUTE} from '../utils/const';
+import {NavLink, useLocation, useNavigate} from "react-router-dom";
+import {LOGIN_ROUTE, REGISTRATION_ROUTE, SHOP_ROUTE} from '../utils/const';
 import {login, registration} from "../http/userApi";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../redux";
 import {IS_SET_AUTH, IS_SET_USER} from "../redux/slice/isAuthSlice";
+
 
 const Auth = () => {
     const location = useLocation();
@@ -13,18 +14,23 @@ const Auth = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const dispatch = useDispatch();
-    // const isAuth: boolean = useSelector((state: RootState) => state.isAuthToolkit.isAuth);
     const user = useSelector((state: RootState) => state.isAuthToolkit.user);
+    const history = useNavigate();
 
     const click = async () => {
-        let date;
-        if (isLogin) {
-            date = await login(email, password);
-        } else {
-            date = await registration(email, password);
+        try {
+            let date;
+            if (isLogin) {
+                date = await login(email, password);
+            } else {
+                date = await registration(email, password);
+            }
+            dispatch(IS_SET_USER(user));
+            dispatch(IS_SET_AUTH(true));
+            history(SHOP_ROUTE);
+        } catch (e: any) {
+            alert(e.response?.data?.message)
         }
-        dispatch(IS_SET_USER(user));
-        dispatch(IS_SET_AUTH(true));
     }
 
     return (
