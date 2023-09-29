@@ -7,6 +7,10 @@ const Auth = () => {
     const location = useLocation();
     const isLogin: boolean = location.pathname === LOGIN_ROUTE;
 
+    const  singIn = async () : boolean =>{
+
+    }
+
     return (
         <Container className="d-flex justify-content-center align-items-center"
                    style={{height: window.innerHeight - 54}}
