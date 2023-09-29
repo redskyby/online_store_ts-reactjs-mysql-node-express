@@ -4,7 +4,6 @@ import star from "../assets/star.png";
 import {useNavigate} from "react-router-dom";
 import {DEVICE_ROUTE} from "../utils/const";
 
-
 interface device {
     id: number,
     name: string,

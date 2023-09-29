@@ -10,7 +10,6 @@ const NavBar = () => {
     const isAuth: boolean = useSelector((state: RootState) => state.isAuthToolkit.isAuth);
     const dispatch = useDispatch();
     const history = useNavigate();
-
     const logOut = (): void => {
         dispatch(IS_SET_USER({}));
         dispatch(IS_SET_AUTH(false));

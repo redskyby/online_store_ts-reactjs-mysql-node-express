@@ -6,7 +6,6 @@ import {useSelector} from "react-redux";
 import {RootState} from "../redux";
 
 const AppRouter = () => {
-
     const isAuth: boolean = useSelector((state: RootState) => state.isAuthToolkit.isAuth);
 
     return (
