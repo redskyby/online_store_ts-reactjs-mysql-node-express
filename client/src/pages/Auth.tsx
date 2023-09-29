@@ -3,21 +3,28 @@ import {Button, Card, Col, Container, Form, Row} from "react-bootstrap";
 import {NavLink, useLocation} from "react-router-dom";
 import {LOGIN_ROUTE, REGISTRATION_ROUTE} from '../utils/const';
 import {login, registration} from "../http/userApi";
+import {useDispatch, useSelector} from "react-redux";
+import {RootState} from "../redux";
+import {IS_SET_AUTH, IS_SET_USER} from "../redux/slice/isAuthSlice";
 
 const Auth = () => {
     const location = useLocation();
     const isLogin: boolean = location.pathname === LOGIN_ROUTE;
-    const [email , setEmail] = useState('');
-    const [password , setPassword] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const dispatch = useDispatch();
+    // const isAuth: boolean = useSelector((state: RootState) => state.isAuthToolkit.isAuth);
+    const user = useSelector((state: RootState) => state.isAuthToolkit.user);
 
     const click = async () => {
+        let date;
         if (isLogin) {
-            const response = await login(email , password);
-            console.log(response);
+            date = await login(email, password);
         } else {
-            const response = await registration(email , password);
-            console.log(response);
+            date = await registration(email, password);
         }
+        dispatch(IS_SET_USER(user));
+        dispatch(IS_SET_AUTH(true));
     }
 
     return (
@@ -28,13 +35,13 @@ const Auth = () => {
                 <h1
                     className="m-auto"
                     style={{fontSize: 35}}
-                >{isLogin  ? 'Авторизация' : 'Регистрация'}</h1>
+                >{isLogin ? 'Авторизация' : 'Регистрация'}</h1>
                 <Form className={"d-flex flex-column"}>
                     <Form.Control
                         className={'mt-3'}
                         placeholder={"Введите ваш email..."}
                         value={email}
-                        onChange={e=> setEmail(e.target.value)}
+                        onChange={e => setEmail(e.target.value)}
                     />
                     <Form.Control
                         className={'mt-3'}
