@@ -16,8 +16,9 @@ class UserApi {
     }
 
     public async check() {
-        const response = await $host.get('api/user/auth');
-        return response;
+        const {data} = await $authHost.get('api/user/auth');
+        localStorage.setItem('token', data.token)
+        return jwtDecode(data.token)
     }
 
 }
