@@ -2,7 +2,8 @@ import React, {useState} from 'react';
 import {Button, Card, Col, Container, Form, Row} from "react-bootstrap";
 import {NavLink, useLocation, useNavigate} from "react-router-dom";
 import {LOGIN_ROUTE, REGISTRATION_ROUTE, SHOP_ROUTE} from '../utils/const';
-import {login, registration} from "../http/userApi";
+// import {login, registration} from "../http/userApi";
+import UserApi from "../http/userApi";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../redux";
 import {IS_SET_AUTH, IS_SET_USER} from "../redux/slice/isAuthSlice";
@@ -21,9 +22,11 @@ const Auth = () => {
         try {
             let date;
             if (isLogin) {
-                date = await login(email, password);
+                date = await UserApi.login(email, password);
+                // date = await login(email, password);
             } else {
-                date = await registration(email, password);
+                date = await UserApi.registration(email, password);
+                // date = await registration(email, password);
             }
             dispatch(IS_SET_USER(user));
             dispatch(IS_SET_AUTH(true));
