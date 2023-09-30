@@ -13,6 +13,7 @@ const NavBar = () => {
     const logOut = (): void => {
         dispatch(IS_SET_USER({}));
         dispatch(IS_SET_AUTH(false));
+        localStorage.removeItem('token')
     }
 
     return (

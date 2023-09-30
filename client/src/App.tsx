@@ -3,14 +3,13 @@ import './App.css';
 import {BrowserRouter} from "react-router-dom";
 import AppRouter from "./components/AppRouter";
 import NavBar from "./components/NavBar";
-import {useDispatch, useSelector} from "react-redux";
-import {RootState} from "./redux";
+import {useDispatch} from "react-redux";
 import UserApi from "./http/userApi";
 import {IS_SET_AUTH} from "./redux/slice/isAuthSlice";
 import {RingLoader} from "react-spinners";
+import {Container} from "react-bootstrap";
 
 function App() {
-    const isAuth = useSelector((state: RootState) => state.isAuthToolkit.isAuth);
     const [loading, setLoading] = useState(true);
     const dispatch = useDispatch();
 
@@ -25,7 +24,12 @@ function App() {
     }, [])
 
     if (loading) {
-        return <RingLoader color={'red'}/>
+        return (
+            <Container className={'d-flex justify-content-center align-items-center '}
+                       style={{height:"100vh"}}>
+                <RingLoader color={'#36d7b7'} size={'100px'}/>
+            </Container>
+        )
     }
 
     return (
