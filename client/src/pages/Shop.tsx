@@ -17,7 +17,7 @@ const Shop = () => {
     useEffect(() => {
         DeviceApi.fetchTypes().then(data=> {
             dispatch(SET_TYPES(data))
-        })
+        }).catch(e => console.log(e.message))
     } ,[])
 
     return (
