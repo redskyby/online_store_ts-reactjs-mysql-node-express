@@ -8,16 +8,10 @@ class DeviceApi {
     }
 
     public async fetchTypes() {
-        const {data} = await $host.post('api/type', );
-        localStorage.setItem('token', data.token);
-        return jwtDecode(data.token)
+        const {data} = await $host.get('api/type');
+        return data;
     }
 
-    public async check() {
-        const {data} = await $authHost.get('api/user/auth');
-        localStorage.setItem('token', data.token)
-        return jwtDecode(data.token)
-    }
 }
 
 export default new DeviceApi();

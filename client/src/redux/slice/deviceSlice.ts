@@ -14,10 +14,7 @@ interface Device {
 }
 
 const initialState = {
-    types: [
-        {id: 1, name: 'Холодильники'},
-        {id: 2, name: 'Смартфоны'}
-    ],
+    types: [] as { id: number, name: string }[],
     brands: [
         {id: 1, name: 'Samsung'},
         {id: 2, name: 'Apple'},
@@ -45,8 +42,9 @@ const deviceSlice = createSlice({
     name: 'device',
     initialState,
     reducers: {
-        SET_TYPES: (state, action: PayloadAction<Type_Brand>) => {
-            state.types.push(action.payload);
+        SET_TYPES: (state, action: PayloadAction<Type_Brand[]>) => {
+            // state.types.push(action.payload);
+            state.types = [...action.payload];
         },
         SET_BRANDS: (state, action: PayloadAction<Type_Brand>) => {
             state.brands.push(action.payload);

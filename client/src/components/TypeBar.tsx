@@ -9,7 +9,6 @@ const TypeBar = () => {
     const types = useSelector((state: RootState) => state.isDeviceToolkit.types);
     const selectedType = useSelector((state: RootState) => state.isDeviceToolkit.selectedType);
     const dispatch = useDispatch();
-
     return (
         <ListGroup>
             {
