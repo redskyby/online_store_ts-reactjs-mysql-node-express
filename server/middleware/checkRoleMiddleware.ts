@@ -12,7 +12,7 @@ declare global {
     }
 }
 
-export default function (role: any) {
+export default function (role: string) {
     return function (req: Request, res: Response, next: NextFunction) {
         if (req.method === "OPTIONS") {
             next();
