@@ -12,6 +12,7 @@ declare global {
     }
 }
 
+// раньше role : any
 export default function (role: string) {
     return function (req: Request, res: Response, next: NextFunction) {
         if (req.method === "OPTIONS") {
