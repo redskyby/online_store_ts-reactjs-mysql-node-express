@@ -7,7 +7,8 @@ import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../redux";
 import Auth from "./Auth";
 import DeviceApi from "../http/deviceApi";
-import {SET_TYPES} from "../redux/slice/deviceSlice";
+import {SET_BRANDS, SET_TYPES} from "../redux/slice/deviceSlice";
+import BrandApi from "../http/brandApi";
 
 const Shop = () => {
     const isAuth: boolean = useSelector((state: RootState) => state.isAuthToolkit.isAuth);
@@ -18,6 +19,10 @@ const Shop = () => {
         DeviceApi.fetchTypes().then(data=> {
             dispatch(SET_TYPES(data))
         }).catch(e => console.log(e.message))
+
+        BrandApi.fetchBrands().then(data =>{
+            dispatch(SET_BRANDS(data))
+        })
     } ,[])
 
     return (

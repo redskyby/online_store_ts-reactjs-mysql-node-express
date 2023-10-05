@@ -15,12 +15,7 @@ interface Device {
 
 const initialState = {
     types: [] as { id: number, name: string }[],
-    brands: [
-        {id: 1, name: 'Samsung'},
-        {id: 2, name: 'Apple'},
-        {id: 3, name: 'Lenovo'},
-        {id: 4, name: 'Asus'},
-    ],
+    brands: [] as { id: number, name: string }[],
     devices: [
         {id: 1, name: 'Iphone 12 pro', price: 25000, rating: 5, img: "img"},
         {id: 2, name: 'Iphone 12 pro', price: 25000, rating: 5, img: "img"},
@@ -46,8 +41,8 @@ const deviceSlice = createSlice({
             // state.types.push(action.payload);
             state.types = [...action.payload];
         },
-        SET_BRANDS: (state, action: PayloadAction<Type_Brand>) => {
-            state.brands.push(action.payload);
+        SET_BRANDS: (state, action: PayloadAction<Type_Brand[]>) => {
+            state.brands = [...action.payload];
         },
         SET_DEVICES: (state, action: PayloadAction<Device>) => {
             state.devices.push(action.payload);
