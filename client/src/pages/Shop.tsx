@@ -6,7 +6,7 @@ import DeviceList from "../components/DeviceList";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../redux";
 import Auth from "./Auth";
-import DeviceApi from "../http/deviceApi";
+import DeviceApi from "../http/typeApi";
 import {SET_BRANDS, SET_TYPES} from "../redux/slice/deviceSlice";
 import BrandApi from "../http/brandApi";
 
