@@ -16,12 +16,12 @@ interface Device {
 const initialState = {
     types: [] as { id: number, name: string }[],
     brands: [] as { id: number, name: string }[],
-    devices:  [] as {id :number , name : string , price : number , img : string}[] ,
+    devices: [] as { id: number, name: string, price: number, rating: number, img: string }[],
     selectedType: {
-        id : -1
+        id: -1
     },
     selectedBrands: {
-        id : -1
+        id: -1
     }
 }
 
