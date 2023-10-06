@@ -17,18 +17,18 @@ const Shop = () => {
 
 
     useEffect(() => {
-        TypeApi.fetchTypes().then(data=> {
+        TypeApi.fetchTypes().then(data => {
             dispatch(SET_TYPES(data))
         }).catch(e => console.log(e.message))
 
-        BrandApi.fetchBrands().then(data =>{
+        BrandApi.fetchBrands().then(data => {
             dispatch(SET_BRANDS(data))
         }).catch(e => console.log(e.message))
 
-        DeviceApi.fetchDevices().then(data =>{
-            dispatch(SET_DEVICES(data))
+        DeviceApi.fetchDevices().then(data => {
+            dispatch(SET_DEVICES(data.rows))
         }).catch(e => console.log(e.message))
-    } ,[])
+    }, [])
 
     return (
         <Container>
