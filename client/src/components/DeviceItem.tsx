@@ -23,7 +23,7 @@ const DeviceItem = (props: device) => {
             onClick={() => history(DEVICE_ROUTE + '/' + props.id)}
         >
             <Card style={{width: 150, cursor: 'pointer'}} border={'light'}>
-                <Image width={150} height={150} src={props.img}/>
+                <Image width={150} height={150} src={process.env.REACT_APP_API_URL +  props.img}/>
                 <div className={"mt-1 d-flex text-black-50 align-items-center justify-content-between"}>
                     <div>
                         Samsung...

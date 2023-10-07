@@ -1,9 +1,16 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Button, Card, Col, Container, Image, Row} from 'react-bootstrap';
 import BigStar from '../assets/bigStar.png';
+import {useParams} from "react-router-dom";
 
 const DevicePage = () => {
     const device = {id: 1, name: 'Iphone 12 pro', price: 25000, rating: 5, img: "img"};
+
+    const {id} = useParams();
+
+    console.log(id);
+
+    // const [device , setDevice] = useState()
 
     return (
         <Container className={"mt-3"}>
