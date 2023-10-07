@@ -24,7 +24,7 @@ const NavBar = () => {
                 {isAuth ?
                     <Nav className="ms-auto" style={{color: 'white'}}>
 
-                        {user!.role === 'ADMIN' ?
+                        {user?.role === 'ADMIN' ?
                             <Button
                                 variant={"outline-light"}
                                 onClick={() => history(ADMIN_ROUTE)}
