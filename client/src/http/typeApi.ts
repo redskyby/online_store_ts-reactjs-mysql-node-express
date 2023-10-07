@@ -1,7 +1,9 @@
 import {$authHost, $host} from "./index";
 
+
+
 class TypeApi {
-    public async createType(type: string) {
+    public async createType(type) {
         const {data} = await $authHost.post('api/type', type);
         return data;
     }

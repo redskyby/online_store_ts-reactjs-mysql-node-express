@@ -1,8 +1,17 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
+interface User{
+    email : string,
+    role : string,
+    iat : number ,
+    exp : number
+}
+
 const initialState = {
     isAuth: false,
-    user: {}
+    user: {
+        role: 'USER'
+    } as User | null
 }
 
 const isAuthSlice = createSlice({
@@ -12,7 +21,7 @@ const isAuthSlice = createSlice({
         IS_SET_AUTH: (state, action: PayloadAction<boolean>) => {
             state.isAuth = action.payload;
         },
-        IS_SET_USER: (state, action: PayloadAction<object>) => {
+        IS_SET_USER: (state, action: PayloadAction<User | null>) => {
             state.user = action.payload;
         }
     }

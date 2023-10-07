@@ -8,10 +8,11 @@ import {IS_SET_AUTH, IS_SET_USER} from "../redux/slice/isAuthSlice";
 
 const NavBar = () => {
     const isAuth: boolean = useSelector((state: RootState) => state.isAuthToolkit.isAuth);
+    const user = useSelector((state: RootState) => state.isAuthToolkit.user);
     const dispatch = useDispatch();
     const history = useNavigate();
     const logOut = (): void => {
-        dispatch(IS_SET_USER({}));
+        dispatch(IS_SET_USER(null));
         dispatch(IS_SET_AUTH(false));
         localStorage.removeItem('token')
     }
@@ -22,12 +23,16 @@ const NavBar = () => {
                 <NavLink style={{color: 'white'}} to={SHOP_ROUTE}>КупиДевайс</NavLink>
                 {isAuth ?
                     <Nav className="ms-auto" style={{color: 'white'}}>
-                        <Button
-                            variant={"outline-light"}
-                            onClick={() => history(ADMIN_ROUTE)}
-                        >
-                            Админ панель
-                        </Button>
+
+                        {user!.role === 'ADMIN' ?
+                            <Button
+                                variant={"outline-light"}
+                                onClick={() => history(ADMIN_ROUTE)}
+                            >
+                                Админ панель
+                            </Button>
+                            : <></>
+                        }
                         <Button
                             className={'ms-2'}
                             variant={"outline-light"}

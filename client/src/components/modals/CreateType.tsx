@@ -1,7 +1,18 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Button, Form, FormControl, Modal, ModalBody, ModalFooter, ModalHeader, ModalTitle} from "react-bootstrap";
+import TypeApi from "../../http/typeApi";
 
 const CreateType = ({show, onHide}) => {
+    const [value, setValue] = useState('');
+
+    const addType = () => {
+        TypeApi.createType({name : value}).then(data => {
+                setValue('')
+                onHide();
+            }
+        ).catch(e => console.log(e.message))
+
+    }
 
     return (
         <Modal
@@ -16,7 +27,11 @@ const CreateType = ({show, onHide}) => {
             </ModalHeader>
             <ModalBody>
                 <Form>
-                    <FormControl placeholder={"Введите название типов..."}/>
+                    <FormControl
+                        value={value}
+                        onChange={e => setValue(e.target.value)}
+                        placeholder={"Введите название типов..."}
+                    />
                 </Form>
             </ModalBody>
             <ModalFooter>
@@ -28,7 +43,7 @@ const CreateType = ({show, onHide}) => {
                 </Button>
                 <Button
                     variant={"outline-success"}
-                    onClick={onHide}
+                    onClick={addType}
                 >
                     Добавить
                 </Button>

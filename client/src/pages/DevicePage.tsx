@@ -27,7 +27,7 @@ const DevicePage = () => {
     if (loading) {
         return (
             <Container className={'d-flex justify-content-center align-items-center '}
-                       style={{height:"100vh"}}>
+                       style={{height: "100vh"}}>
                 <RingLoader color={'#36d7b7'} size={'100px'}/>
             </Container>
         )
@@ -37,7 +37,7 @@ const DevicePage = () => {
         <Container className={"mt-3"}>
             <Row>
                 <Col md={4}>
-                    <Image width={300} height={300} src={process.env.REACT_APP_API_URL +  device.img}/>
+                    <Image width={300} height={300} src={process.env.REACT_APP_API_URL + device.img}/>
                 </Col>
                 <Col md={4}>
                     <Row className={'d-flex flex-column align-items-center '}>
