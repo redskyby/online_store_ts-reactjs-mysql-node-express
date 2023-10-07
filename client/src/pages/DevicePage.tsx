@@ -1,22 +1,43 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Button, Card, Col, Container, Image, Row} from 'react-bootstrap';
 import BigStar from '../assets/bigStar.png';
 import {useParams} from "react-router-dom";
+import DeviceApi from "../http/deviceApi";
+import {RingLoader} from "react-spinners";
 
 const DevicePage = () => {
-    const device = {id: 1, name: 'Iphone 12 pro', price: 25000, rating: 5, img: "img"};
 
-    const {id} = useParams();
+    const {id} = useParams<string>();
 
-    console.log(id);
+    const [device, setDevice] = useState({} as { id: number, name: string, price: number, rating: number, img: string })
+    const [loading, setLoading] = useState(true);
 
-    // const [device , setDevice] = useState()
+    useEffect(() => {
+        if (Object.entries(device).length === 0) {
+            DeviceApi.fetchOneDevice(id!).then(data => {
+                setDevice(data);
+                setLoading(false);
+            }).catch(e => console.log(e.message))
+        } else {
+            setLoading(false);
+        }
+
+    }, [])
+
+    if (loading) {
+        return (
+            <Container className={'d-flex justify-content-center align-items-center '}
+                       style={{height:"100vh"}}>
+                <RingLoader color={'#36d7b7'} size={'100px'}/>
+            </Container>
+        )
+    }
 
     return (
         <Container className={"mt-3"}>
             <Row>
                 <Col md={4}>
-                    <Image width={300} height={300} src={device.img}/>
+                    <Image width={300} height={300} src={process.env.REACT_APP_API_URL +  device.img}/>
                 </Col>
                 <Col md={4}>
                     <Row className={'d-flex flex-column align-items-center '}>
@@ -30,7 +51,6 @@ const DevicePage = () => {
                                 fontSize: 64
                             }}
                         >
-
                             {device.rating}
                         </div>
                     </Row>

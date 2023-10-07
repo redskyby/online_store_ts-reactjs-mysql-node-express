@@ -10,7 +10,7 @@ class DeviceApi {
         const {data} = await $host.get('api/device');
         return data;
     }
-    public async fetchOneDevice(id:number) {
+    public async fetchOneDevice(id : string) {
         const {data} = await $host.get('api/device/' + id);
         return data;
     }
