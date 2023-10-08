@@ -1,7 +1,19 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Button, Form, FormControl, Modal, ModalBody, ModalFooter, ModalHeader, ModalTitle} from "react-bootstrap";
+import brandApi from "../../http/brandApi";
 
 const CreateBrand = ({show, onHide}) => {
+    const [value, setValue] = useState('');
+
+    const addBrand = () => {
+        brandApi.createBrand({name : value}).then(data => {
+                setValue('')
+                onHide();
+            }
+        ).catch(e => console.log(e.message))
+
+    }
+
     return (
         <Modal
             show={show}
@@ -15,7 +27,11 @@ const CreateBrand = ({show, onHide}) => {
             </ModalHeader>
             <ModalBody>
                 <Form>
-                    <FormControl placeholder={"Введите название брэнда..."}/>
+                    <FormControl
+                        value={value}
+                        onChange={e => setValue(e.target.value)}
+                        placeholder={"Введите название брэнда..."}
+                    />
                 </Form>
             </ModalBody>
             <ModalFooter>
@@ -27,7 +43,7 @@ const CreateBrand = ({show, onHide}) => {
                 </Button>
                 <Button
                     variant={"outline-success"}
-                    onClick={onHide}
+                    onClick={addBrand}
                 >
                     Добавить
                 </Button>

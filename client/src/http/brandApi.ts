@@ -1,7 +1,7 @@
 import {$authHost, $host} from "./index";
 
 class BrandApi {
-    public async createBrand(brand: string) {
+    public async createBrand(brand) {
         const {data} = await $authHost.post('api/brand', brand);
         return data;
     }

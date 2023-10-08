@@ -21,7 +21,6 @@ function App() {
     const [loading, setLoading] = useState(true);
     const dispatch = useDispatch();
 
-
     useEffect(() => {
         if (localStorage.getItem('token')) {
             UserApi.check().then(data  => {
@@ -30,9 +29,10 @@ function App() {
                 dispatch(IS_SET_AUTH(true));
             }).finally(() => setLoading(false))
         }else{
+            localStorage.removeItem('token');
             setLoading(false);
         }
-    }, [isAuth])
+    }, [])
 
     if (loading) {
         return (
