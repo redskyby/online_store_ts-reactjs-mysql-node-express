@@ -17,6 +17,9 @@ import {RootState} from "../../redux";
 const CreateDevice = ({show, onHide}) => {
     const types = useSelector((state: RootState) => state.isDeviceToolkit.types);
     const brands = useSelector((state: RootState) => state.isDeviceToolkit.brands);
+    const [name, setName] = useState('');
+    const [price, setPrice] = useState(0);
+    const [file, setFile] = useState(null);
     const [info, setInfo] = useState<{ title: string; description: string; number: number; }[]>([]);
 
     const addInfo = (): void => {
@@ -27,6 +30,9 @@ const CreateDevice = ({show, onHide}) => {
         setInfo(info.filter(i => i.number !== number));
     }
 
+    const selectFile = (e) => {
+        setFile(e.target.files[0]);
+    }
 
     return (
         <Modal
@@ -63,10 +69,14 @@ const CreateDevice = ({show, onHide}) => {
                     </FormGroup>
                     <FormGroup>
                         <FormControl
+                            value={name}
+                            onChange={e => setName(e.target.value)}
                             className={"mt-3"}
                             placeholder={"Введите название устройства"}
                         />
                         <FormControl
+                            value={price}
+                            onChange={e => setPrice(Number(e.target.value))}
                             className={"mt-3"}
                             placeholder={"Введите стоимость устройства"}
                             type={"number"}
@@ -74,6 +84,7 @@ const CreateDevice = ({show, onHide}) => {
                         <FormControl
                             className={"mt-3"}
                             type={"file"}
+                            onChange={selectFile}
                         />
 
                     </FormGroup>
