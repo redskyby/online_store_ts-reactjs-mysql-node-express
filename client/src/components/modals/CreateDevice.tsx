@@ -25,17 +25,18 @@ const CreateDevice = ({show, onHide}) => {
     const [file, setFile] = useState(null);
     const [info, setInfo] = useState<{ title: string; description: string; number: number; }[]>([]);
     const dispatch = useDispatch();
-    const selectedType = useSelector((state: RootState) => state.isDeviceToolkit.selectedType )
+    const selectedType = useSelector((state: RootState) => state.isDeviceToolkit.selectedType);
+    const selectedBrand = useSelector((state: RootState) => state.isDeviceToolkit.selectedBrands);
 
 
-    useEffect(()=>{
+    useEffect(() => {
         typeApi.fetchTypes().then(data => {
             dispatch(SET_TYPES(data));
         }).catch(e => console.log(e.message));
         brandApi.fetchBrands().then(data => {
             dispatch(SET_BRANDS(data));
         }).catch(e => console.log(e.message));
-    } ,[])
+    }, [])
 
     const addInfo = (): void => {
         setInfo([...info, {title: '', description: '', number: Date.now()}])
@@ -64,11 +65,11 @@ const CreateDevice = ({show, onHide}) => {
                 <Form className={'d-flex flex-column'}>
                     <FormGroup className={'d-flex flex-row'}>
                         <Dropdown id="dropdown-basic">
-                            <Dropdown.Toggle>Выбери тип</Dropdown.Toggle>
+                            <Dropdown.Toggle>{selectedType.name || "Выбери тип"}</Dropdown.Toggle>
                             <Dropdown.Menu>
                                 {types.map(type =>
                                     <Dropdown.Item
-                                        onClick={() =>dispatch(SET_SELECTED_TYPE(type))}
+                                        onClick={() => dispatch(SET_SELECTED_TYPE(type))}
                                         key={type.id}>
                                         {type.name}
                                     </Dropdown.Item>
@@ -77,7 +78,7 @@ const CreateDevice = ({show, onHide}) => {
                             </Dropdown.Menu>
                         </Dropdown>
                         <Dropdown id="dropdown-basic" className={"ms-3"}>
-                            <Dropdown.Toggle>Выбери бренд</Dropdown.Toggle>
+                            <Dropdown.Toggle>{selectedBrand.name || "Выбери бренд"}</Dropdown.Toggle>
                             <Dropdown.Menu>
                                 {brands.map(brand =>
                                     <Dropdown.Item
