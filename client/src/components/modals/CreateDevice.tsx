@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
     Button, Col,
     Dropdown,
@@ -10,8 +10,11 @@ import {
     ModalHeader,
     ModalTitle, Row
 } from "react-bootstrap";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../redux";
+import {SET_BRANDS, SET_SELECTED_BRAND, SET_SELECTED_TYPE, SET_TYPES} from "../../redux/slice/deviceSlice";
+import typeApi from "../../http/typeApi";
+import brandApi from "../../http/brandApi";
 
 
 const CreateDevice = ({show, onHide}) => {
@@ -21,6 +24,18 @@ const CreateDevice = ({show, onHide}) => {
     const [price, setPrice] = useState(0);
     const [file, setFile] = useState(null);
     const [info, setInfo] = useState<{ title: string; description: string; number: number; }[]>([]);
+    const dispatch = useDispatch();
+    const selectedType = useSelector((state: RootState) => state.isDeviceToolkit.selectedType )
+
+
+    useEffect(()=>{
+        typeApi.fetchTypes().then(data => {
+            dispatch(SET_TYPES(data));
+        }).catch(e => console.log(e.message));
+        brandApi.fetchBrands().then(data => {
+            dispatch(SET_BRANDS(data));
+        }).catch(e => console.log(e.message));
+    } ,[])
 
     const addInfo = (): void => {
         setInfo([...info, {title: '', description: '', number: Date.now()}])
@@ -52,7 +67,11 @@ const CreateDevice = ({show, onHide}) => {
                             <Dropdown.Toggle>Выбери тип</Dropdown.Toggle>
                             <Dropdown.Menu>
                                 {types.map(type =>
-                                    <Dropdown.Item key={type.id}>{type.name}</Dropdown.Item>
+                                    <Dropdown.Item
+                                        onClick={() =>dispatch(SET_SELECTED_TYPE(type))}
+                                        key={type.id}>
+                                        {type.name}
+                                    </Dropdown.Item>
                                 )
                                 }
                             </Dropdown.Menu>
@@ -61,7 +80,11 @@ const CreateDevice = ({show, onHide}) => {
                             <Dropdown.Toggle>Выбери бренд</Dropdown.Toggle>
                             <Dropdown.Menu>
                                 {brands.map(brand =>
-                                    <Dropdown.Item key={brand.id}>{brand.name}</Dropdown.Item>
+                                    <Dropdown.Item
+                                        onClick={() => dispatch(SET_SELECTED_BRAND(brand))}
+                                        key={brand.id}>
+                                        {brand.name}
+                                    </Dropdown.Item>
                                 )
                                 }
                             </Dropdown.Menu>

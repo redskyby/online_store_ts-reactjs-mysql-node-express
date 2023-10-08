@@ -2,14 +2,13 @@ import React, {useEffect, useState} from 'react';
 import {BrowserRouter} from "react-router-dom";
 import AppRouter from "./components/AppRouter";
 import NavBar from "./components/NavBar";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import UserApi from "./http/userApi";
 import {IS_SET_AUTH, IS_SET_USER} from "./redux/slice/isAuthSlice";
 import {RingLoader} from "react-spinners";
 import {Container} from "react-bootstrap";
-import {RootState} from "./redux";
 
-interface User{
+interface User {
     email : string,
     role : string,
     iat : number ,
@@ -17,7 +16,6 @@ interface User{
 }
 
 function App() {
-    const isAuth: boolean = useSelector((state: RootState) => state.isAuthToolkit.isAuth);
     const [loading, setLoading] = useState(true);
     const dispatch = useDispatch();
 
