@@ -54,6 +54,9 @@ const CreateDevice = ({show, onHide}) => {
         setFile(e.target.files[0]);
     }
 
+    const addDevice = () =>{
+        console.log(info);
+    }
 
     return (
         <Modal
@@ -129,11 +132,15 @@ const CreateDevice = ({show, onHide}) => {
                             <Row className={"mt-2"} key={i.number}>
                                 <Col md={4}>
                                     <FormControl
+                                        value={i.title}
+                                        onChange={e=>changeInfo('title' , e.target.value , i.number)}
                                         placeholder={"Введите название свойства"}
                                     />
                                 </Col>
                                 <Col md={4}>
                                     <FormControl
+                                        value={i.description}
+                                        onChange={e=>changeInfo('description' , e.target.value , i.number)}
                                         placeholder={"Введите описание свойства"}
                                     />
                                 </Col>
@@ -157,7 +164,7 @@ const CreateDevice = ({show, onHide}) => {
                 </Button>
                 <Button
                     variant={"outline-success"}
-                    onClick={onHide}
+                    onClick={addDevice}
                 >
                     Добавить
                 </Button>
