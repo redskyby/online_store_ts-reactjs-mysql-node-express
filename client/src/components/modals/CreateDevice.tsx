@@ -46,9 +46,14 @@ const CreateDevice = ({show, onHide}) => {
         setInfo(info.filter(i => i.number !== number));
     }
 
+    const changeInfo = (key: string , value: string , number: number) : void => {
+        setInfo(info.map(i => i.number === number? {...i , [key]: value} : i ))
+    }
+
     const selectFile = (e) => {
         setFile(e.target.files[0]);
     }
+
 
     return (
         <Modal
