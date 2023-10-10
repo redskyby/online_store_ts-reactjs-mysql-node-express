@@ -52,19 +52,22 @@ const CreateDevice = ({show, onHide}) => {
     }
 
     const selectFile = (e) => {
-        setFile(e.target.files[0]);
+         setFile(e.target.files[0]);
     }
 
     const addDevice = () =>{
         const formData = new FormData();
         formData.append('name' , name);
         formData.append('price' , `${price}`);
-        // formData.append('img' , file);
+        // @ts-ignore
+        formData.append('img' ,  file);
         formData.append('brandId' , `${selectedBrand.id}`);
         formData.append('typeId' , `${selectedType.id}`);
         formData.append('info' , JSON.stringify(info));
         DeviceApi.createDevice(formData).then(data => onHide()).catch(e => console.log(e.message));
+        // console.log(formData);
     }
+
 
     return (
         <Modal
