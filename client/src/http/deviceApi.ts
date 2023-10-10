@@ -1,7 +1,7 @@
 import {$authHost, $host} from "./index";
 
 class DeviceApi {
-    public async createDevice(type: string) {
+    public async createDevice(type) {
         const {data} = await $authHost.post('api/device', type);
         return data;
     }

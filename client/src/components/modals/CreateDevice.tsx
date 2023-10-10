@@ -15,6 +15,7 @@ import {RootState} from "../../redux";
 import {SET_BRANDS, SET_SELECTED_BRAND, SET_SELECTED_TYPE, SET_TYPES} from "../../redux/slice/deviceSlice";
 import typeApi from "../../http/typeApi";
 import brandApi from "../../http/brandApi";
+import DeviceApi from "../../http/deviceApi";
 
 
 const CreateDevice = ({show, onHide}) => {
@@ -55,7 +56,14 @@ const CreateDevice = ({show, onHide}) => {
     }
 
     const addDevice = () =>{
-        console.log(info);
+        const formData = new FormData();
+        formData.append('name' , name);
+        formData.append('price' , `${price}`);
+        // formData.append('img' , file);
+        formData.append('brandId' , `${selectedBrand.id}`);
+        formData.append('typeId' , `${selectedType.id}`);
+        formData.append('info' , JSON.stringify(info));
+        DeviceApi.createDevice(formData).then(data => onHide()).catch(e => console.log(e.message));
     }
 
     return (
