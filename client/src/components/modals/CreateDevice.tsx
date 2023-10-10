@@ -59,13 +59,11 @@ const CreateDevice = ({show, onHide}) => {
         const formData = new FormData();
         formData.append('name' , name);
         formData.append('price' , `${price}`);
-        // @ts-ignore
-        formData.append('img' ,  file);
+        formData.append('img' ,  file!);
         formData.append('brandId' , `${selectedBrand.id}`);
         formData.append('typeId' , `${selectedType.id}`);
         formData.append('info' , JSON.stringify(info));
         DeviceApi.createDevice(formData).then(data => onHide()).catch(e => console.log(e.message));
-        // console.log(formData);
     }
 
 
