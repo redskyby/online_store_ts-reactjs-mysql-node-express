@@ -3,6 +3,6 @@ import infoController from "../controllers/infoController";
 
 const router = Router();
 
-router.get("/" , infoController.getAll);
+router.get("/:deviceId" , infoController.getOne);
 
 export default router;

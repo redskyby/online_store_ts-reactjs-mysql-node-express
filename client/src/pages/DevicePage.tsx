@@ -4,20 +4,26 @@ import BigStar from '../assets/bigStar.png';
 import {useParams} from "react-router-dom";
 import DeviceApi from "../http/deviceApi";
 import {RingLoader} from "react-spinners";
+import brandInfoApi from "../http/brandInfoApi";
+import {isEmpty} from "lodash";
+
 
 const DevicePage = () => {
-
     const {id} = useParams<string>();
 
     const [device, setDevice] = useState({} as { id: number, name: string, price: number, rating: number, img: string })
     const [loading, setLoading] = useState(true);
+    const [info, setInfo] = useState<Array<{ id: number; title?: string; description?: string }>>([]);
 
     useEffect(() => {
         if (Object.entries(device).length === 0) {
             DeviceApi.fetchOneDevice(id!).then(data => {
                 setDevice(data);
                 setLoading(false);
-            }).catch(e => console.log(e.message))
+            }).catch(e => console.log(e.message));
+            brandInfoApi.fetchInfoBrand(id!).then(data => {
+                setInfo(data);
+            }).catch(e => console.log(e.message));
         } else {
             setLoading(false);
         }
@@ -69,11 +75,16 @@ const DevicePage = () => {
             </Row>
             <Row className="d-flex flex-column m-3">
                 <h1>Характеристики</h1>
-                {/*{device.info.map((info, index) =>*/}
-                {/*    <Row key={info.id} style={{background: index % 2 === 0 ? 'lightgray' : 'transparent', padding: 10}}>*/}
-                {/*        {info.title}: {info.description}*/}
-                {/*    </Row>*/}
-                {/*)}*/}
+
+
+                {
+                    !isEmpty(info) ? info.map(i => (
+                        <Row key={i.id}>
+                            <Col md={2}>{i.title}</Col>
+                            <Col md={2}>{i.description}</Col>
+                        </Row>
+                    )) : <p>На данный момент характеристики отсутствуют</p>
+                }
             </Row>
         </Container>
     );

@@ -20,7 +20,6 @@ function App() {
     const [loading, setLoading] = useState(true);
     const dispatch = useDispatch();
     const user = useSelector((state: RootState) => state.isAuthToolkit.user);
-    console.log(user);
 
     useEffect(() => {
         if (localStorage.getItem('token') && user !== null) {
