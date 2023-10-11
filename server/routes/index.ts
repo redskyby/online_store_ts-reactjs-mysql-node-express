@@ -13,6 +13,6 @@ router.use('/user', userRoutes);
 router.use('/type', typeRoutes);
 router.use('/brand', brandRoutes);
 router.use('/device', deviceRoutes);
-router.use('/info' , infoRoutes);
+router.use('/info', infoRoutes);
 
 export default router;
