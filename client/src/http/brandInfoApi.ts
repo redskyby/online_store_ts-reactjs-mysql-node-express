@@ -1,4 +1,5 @@
 import {$host} from "./index";
+
 class BrandInfoApi {
     public async fetchInfoBrand(deviceId: string) {
 

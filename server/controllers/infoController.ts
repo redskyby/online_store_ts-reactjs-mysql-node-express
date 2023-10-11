@@ -4,7 +4,7 @@ import models from "../models/models";
 class InfoController {
     async getOne(req: Request, res: Response) {
         try {
-            const {deviceId}= req.params;
+            const {deviceId} = req.params;
             const types = await models.Device_Info.findAll({where: {deviceId}});
             return res.json(types);
         } catch (e) {

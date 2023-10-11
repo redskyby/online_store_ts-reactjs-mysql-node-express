@@ -75,8 +75,6 @@ const DevicePage = () => {
             </Row>
             <Row className="d-flex flex-column m-3">
                 <h1>Характеристики</h1>
-
-
                 {
                     !isEmpty(info) ? info.map(i => (
                         <Row key={i.id}>
