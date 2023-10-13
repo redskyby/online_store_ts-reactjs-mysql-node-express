@@ -10,10 +10,10 @@ import {Container} from "react-bootstrap";
 import {RootState} from "./redux";
 
 interface User {
-    email : string,
-    role : string,
-    iat : number ,
-    exp : number
+    email: string,
+    role: string,
+    iat: number,
+    exp: number
 }
 
 function App() {
@@ -21,14 +21,15 @@ function App() {
     const dispatch = useDispatch();
     const user = useSelector((state: RootState) => state.isAuthToolkit.user);
 
+
     useEffect(() => {
-        if (localStorage.getItem('token') && user !== null) {
-            UserApi.check().then(data  => {
+        if (localStorage.getItem('token') !== null) {
+            UserApi.check().then(data => {
                 const userData = data as User;
                 dispatch(IS_SET_USER(userData))
                 dispatch(IS_SET_AUTH(true));
             }).finally(() => setLoading(false))
-        }else{
+        } else {
             localStorage.removeItem('token');
             setLoading(false);
         }
@@ -37,7 +38,7 @@ function App() {
     if (loading) {
         return (
             <Container className={'d-flex justify-content-center align-items-center '}
-                       style={{height:"100vh"}}>
+                       style={{height: "100vh"}}>
                 <RingLoader color={'#36d7b7'} size={'100px'}/>
             </Container>
         )
