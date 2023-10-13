@@ -23,14 +23,19 @@ function App() {
 
 
     useEffect(() => {
-        if (localStorage.getItem('token') !== null) {
+        if (localStorage.getItem('token') !== null && localStorage.getItem('token') !== undefined) {
             UserApi.check().then(data => {
                 const userData = data as User;
                 dispatch(IS_SET_USER(userData))
                 dispatch(IS_SET_AUTH(true));
-            }).finally(() => setLoading(false))
+            }).catch(e => {
+                    console.log(e.message);
+                    localStorage.removeItem('token');
+                }).finally(() => setLoading(false))
         } else {
             localStorage.removeItem('token');
+            dispatch(IS_SET_AUTH(false));
+            dispatch(IS_SET_USER(null));
             setLoading(false);
         }
     }, [])

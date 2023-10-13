@@ -11,7 +11,7 @@ const generateJwt = (id: number, email: string, role: string): string => {
     return jwt.sign(
         {id, email, role},
         process.env.SECRET_KEY!,
-        {expiresIn: "3600s"}
+        {expiresIn: "1h"}
     );
 }
 
