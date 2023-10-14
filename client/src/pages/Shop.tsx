@@ -10,6 +10,7 @@ import DeviceApi from "../http/deviceApi";
 import {SET_BRANDS, SET_DEVICES, SET_TYPES} from "../redux/slice/deviceSlice";
 import BrandApi from "../http/brandApi";
 import TypeApi from "../http/typeApi";
+import PaginationInPage from "../components/PaginationInPage";
 
 const Shop = () => {
     const isAuth: boolean = useSelector((state: RootState) => state.isAuthToolkit.isAuth);
@@ -40,6 +41,7 @@ const Shop = () => {
                     <Col md={9}>
                         <BrandBar/>
                         <DeviceList/>
+                        <PaginationInPage/>
                     </Col>
                 </Row>
                 :

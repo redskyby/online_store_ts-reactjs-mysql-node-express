@@ -19,12 +19,18 @@ const initialState = {
     devices: [] as { id: number, name: string, price: number, rating: number, img: string }[],
     selectedType: {
         id: -1,
-        name : ''
+        name: ''
     },
     selectedBrands: {
         id: -1,
-        name : ''
+        name: ''
+    },
+    pagination: {
+        page: 1,
+        totalCount: 0,
+        limit: 3
     }
+
 }
 
 const deviceSlice = createSlice({
