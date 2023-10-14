@@ -24,13 +24,7 @@ const initialState = {
     selectedBrands: {
         id: -1,
         name: ''
-    },
-    pagination: {
-        page: 1,
-        totalCount: 0,
-        limit: 3
     }
-
 }
 
 const deviceSlice = createSlice({
