@@ -2,11 +2,9 @@ import {createSlice} from "@reduxjs/toolkit";
 
 
 const initialState = {
-    pagination: {
         page: 1 as number,
         totalCount: 0 as number,
         limit: 3 as number,
-    }
 }
 
 const paginationSlice = createSlice({
@@ -14,13 +12,13 @@ const paginationSlice = createSlice({
     initialState,
     reducers: {
         SET_PAGINATION_PAGE: (state, action) => {
-            state.pagination.page = action.payload;
+            state.page = action.payload;
         },
         SET_PAGINATION_TOTAL_COUNT: (state, action) => {
-            state.pagination.totalCount = action.payload;
+            state.totalCount = action.payload;
         },
         SET_PAGINATION_LIMIT: (state, action) => {
-            state.pagination.limit = action.payload;
+            state.limit = action.payload;
         }
     }
 })
