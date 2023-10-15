@@ -26,7 +26,7 @@ const Shop = () => {
             dispatch(SET_BRANDS(data))
         }).catch(e => console.log(e.message))
 
-        DeviceApi.fetchDevices().then(data => {
+        DeviceApi.fetchDevices(null , null , 1 , 3).then(data => {
             dispatch(SET_DEVICES(data.rows))
         }).catch(e => console.log(e.message))
     }, [])

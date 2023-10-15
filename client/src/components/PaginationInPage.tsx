@@ -2,6 +2,7 @@ import React from 'react';
 import {Pagination} from "react-bootstrap";
 import {useSelector} from "react-redux";
 import {RootState} from "../redux";
+
 const PaginationInPage = () => {
 
     const pages: number[] = [1, 2, 3, 4, 5]

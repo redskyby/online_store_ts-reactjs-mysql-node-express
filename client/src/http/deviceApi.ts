@@ -6,8 +6,16 @@ class DeviceApi {
         return data;
     }
 
-    public async fetchDevices() {
-        const {data} = await $host.get('api/device');
+    // public async fetchDevices() {
+    //     const {data} = await $host.get('api/device');
+    //     return data;
+    // }
+    public async fetchDevices(typeId, brandId, page, limit = 5) {
+        const {data} = await $host.get('api/device', {
+            params: {
+                typeId, brandId, page, limit
+            }
+        });
         return data;
     }
 
