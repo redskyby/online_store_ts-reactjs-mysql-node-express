@@ -11,6 +11,7 @@ import {SET_BRANDS, SET_DEVICES, SET_TYPES} from "../redux/slice/deviceSlice";
 import BrandApi from "../http/brandApi";
 import TypeApi from "../http/typeApi";
 import PaginationInPage from "../components/PaginationInPage";
+import {SET_PAGINATION_TOTAL_COUNT} from "../redux/slice/paginationSlice";
 
 const Shop = () => {
     const isAuth: boolean = useSelector((state: RootState) => state.isAuthToolkit.isAuth);
@@ -27,7 +28,8 @@ const Shop = () => {
         }).catch(e => console.log(e.message))
 
         DeviceApi.fetchDevices(null , null , 1 , 3).then(data => {
-            dispatch(SET_DEVICES(data.rows))
+            dispatch(SET_DEVICES(data.rows));
+            dispatch(SET_PAGINATION_TOTAL_COUNT(data.count));
         }).catch(e => console.log(e.message))
     }, [])
 

@@ -56,7 +56,7 @@ class UserController {
         //     return next(ApiError.badRequest("Не задан ID!"));
         // }
         // res.json(id);
-        const token = generateJwt(req.user.id , req.user.email , req.user.role);
+        const token = generateJwt(req.user.id, req.user.email, req.user.role);
         return res.json({token});
     }
 }
