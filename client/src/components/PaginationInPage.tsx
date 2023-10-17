@@ -5,7 +5,16 @@ import {RootState} from "../redux";
 
 const PaginationInPage = () => {
 
-    const pages: number[] = [1, 2, 3, 4, 5]
+    const totalCount: number = useSelector((state: RootState) => state.isPaginationToolkit.totalCount);
+    const limit: number = useSelector((state: RootState) => state.isPaginationToolkit.limit);
+
+    const pageCount = Math.ceil(totalCount / limit);
+
+    let pages: number[] = [];
+
+    for (let i = 0; i < pageCount; i++) {
+        pages.push(i + 1);
+    }
 
     return (
         <Pagination className={'mt-3'}>
