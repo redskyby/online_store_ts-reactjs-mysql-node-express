@@ -27,7 +27,7 @@ const Shop = () => {
             dispatch(SET_BRANDS(data))
         }).catch(e => console.log(e.message))
 
-        DeviceApi.fetchDevices(null , null , 1 , 3).then(data => {
+        DeviceApi.fetchDevices(null, null, 1, 3).then(data => {
             dispatch(SET_DEVICES(data.rows));
             dispatch(SET_PAGINATION_TOTAL_COUNT(data.count));
         }).catch(e => console.log(e.message))
