@@ -15,6 +15,10 @@ import {SET_PAGINATION_TOTAL_COUNT} from "../redux/slice/paginationSlice";
 
 const Shop = () => {
     const isAuth: boolean = useSelector((state: RootState) => state.isAuthToolkit.isAuth);
+    const pageFromRedux: number = useSelector((state: RootState) => state.isPaginationToolkit.page);
+    const selectedType = useSelector((state: RootState) => state.isDeviceToolkit.selectedType);
+    const selectedBrands = useSelector((state: RootState) => state.isDeviceToolkit.selectedBrands);
+    const totalCount: number = useSelector((state: RootState) => state.isPaginationToolkit.totalCount);
     const dispatch = useDispatch();
 
 
@@ -32,6 +36,14 @@ const Shop = () => {
             dispatch(SET_PAGINATION_TOTAL_COUNT(data.count));
         }).catch(e => console.log(e.message))
     }, [])
+
+
+    useEffect(() => {
+        DeviceApi.fetchDevices(selectedType.id, selectedBrands.id, totalCount, 3).then(data => {
+            dispatch(SET_DEVICES(data.rows));
+            dispatch(SET_PAGINATION_TOTAL_COUNT(data.count));
+        }).catch(e => console.log(e.message));
+    }, [pageFromRedux, selectedType, selectedBrands])
 
     return (
         <Container>
