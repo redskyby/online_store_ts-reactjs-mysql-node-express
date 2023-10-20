@@ -18,11 +18,11 @@ const initialState = {
     brands: [] as { id: number, name: string }[],
     devices: [] as { id: number, name: string, price: number, rating: number, img: string }[],
     selectedType: {
-        id: -1,
+        id: 1 as number,
         name: ''
     },
     selectedBrands: {
-        id: -1,
+        id: 1 as number,
         name: ''
     }
 }

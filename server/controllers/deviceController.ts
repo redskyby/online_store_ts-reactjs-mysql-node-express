@@ -44,6 +44,7 @@ class deviceController {
         let devises;
         limit = Number(limit)
         let offset: number = Number(page) * limit - limit;
+        console.log(offset ,page ,  limit);
         if (!brandId && !typeId) {
             devises = await models.Device.findAndCountAll({limit, offset});
         }
