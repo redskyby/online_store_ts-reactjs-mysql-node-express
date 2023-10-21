@@ -18,7 +18,7 @@ const DevicePage = () => {
     const [info, setInfo] = useState<Array<{ id: number; title?: string; description?: string }>>([]);
     const [rating, setRating] = useState(0);
 
-
+    console.log(device);
     useEffect(() => {
         if (Object.entries(device).length === 0) {
             DeviceApi.fetchOneDevice(id!).then(data => {
@@ -29,7 +29,7 @@ const DevicePage = () => {
                 setInfo(data);
             }).catch(e => console.log(e.message));
             ratingApi.fetchRating(id!).then(data => {
-                setRating(data.data.rate)
+                setDevice( device => ({...device, rating : data.data?.rate}))
             }).catch(e => console.log(e.message))
         } else {
             setLoading(false);
@@ -64,7 +64,7 @@ const DevicePage = () => {
                                 fontSize: 64
                             }}
                         >
-                            {rating}
+                            {device.rating || rating}
                         </div>
                         <SelectRating/>
                     </Row>
