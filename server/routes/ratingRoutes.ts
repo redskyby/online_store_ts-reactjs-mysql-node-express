@@ -4,6 +4,7 @@ import ratingController from "../controllers/ratingController";
 
 const router = Router();
 
-router.get("/:ratingId" , ratingController.create);
+router.get("/" , ratingController.getRating);
+router.post("/" , ratingController.createRating);
 
 export default router;
