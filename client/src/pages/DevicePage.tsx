@@ -7,6 +7,7 @@ import {RingLoader} from "react-spinners";
 import brandInfoApi from "../http/brandInfoApi";
 import {isEmpty} from "lodash";
 import SelectRating from "../components/selectForm/SelectRating";
+import ratingApi from "../http/ratingApi";
 
 
 const DevicePage = () => {
@@ -15,6 +16,8 @@ const DevicePage = () => {
     const [device, setDevice] = useState({} as { id: number, name: string, price: number, rating: number, img: string })
     const [loading, setLoading] = useState(true);
     const [info, setInfo] = useState<Array<{ id: number; title?: string; description?: string }>>([]);
+    const [rating, setRating] = useState(0);
+
 
     useEffect(() => {
         if (Object.entries(device).length === 0) {
@@ -25,6 +28,9 @@ const DevicePage = () => {
             brandInfoApi.fetchInfoBrand(id!).then(data => {
                 setInfo(data);
             }).catch(e => console.log(e.message));
+            ratingApi.fetchRating(id!).then(data => {
+                setRating(data.data.rate)
+            }).catch(e => console.log(e.message))
         } else {
             setLoading(false);
         }
@@ -49,17 +55,17 @@ const DevicePage = () => {
                 <Col md={4}>
                     <Row className={'d-flex flex-column align-items-center '}>
                         <h2 style={{textAlign: "center"}}>{device.name}</h2>
-                        {/*<div*/}
-                        {/*    className={"d-flex align-items-center justify-content-center"}*/}
-                        {/*    style={{*/}
-                        {/*        background: `url(${BigStar}) no-repeat center center`,*/}
-                        {/*        width: 240, height: 240,*/}
-                        {/*        backgroundSize: "cover",*/}
-                        {/*        fontSize: 64*/}
-                        {/*    }}*/}
-                        {/*>*/}
-                        {/*    {device.rating}*/}
-                        {/*</div>*/}
+                        <div
+                            className={"d-flex align-items-center justify-content-center"}
+                            style={{
+                                background: `url(${BigStar}) no-repeat center center`,
+                                width: 240, height: 240,
+                                backgroundSize: "cover",
+                                fontSize: 64
+                            }}
+                        >
+                            {rating}
+                        </div>
                         <SelectRating/>
                     </Row>
                 </Col>

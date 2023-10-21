@@ -11,12 +11,15 @@ class RatingController {
     }
 
     async getRating(req: Request, res: Response) {
-        const {userId, deviceId} = req.query;
-        const rate = await models.Rating.findOne({
-            where: {userId, deviceId}
-        });
-        return res.json(rate);
-
+        try {
+            const {userId, deviceId} = req.query;
+            const rate = await models.Rating.findOne({
+                where: {deviceId}
+            });
+            return res.json(rate);
+        }catch (e : any) {
+            res.json(e.message);
+        }
     }
 }
 

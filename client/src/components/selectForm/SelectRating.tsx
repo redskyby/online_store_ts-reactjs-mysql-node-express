@@ -1,8 +1,9 @@
 import React from 'react';
-import {Col, Container, Form, Row} from "react-bootstrap";
+import {Form} from "react-bootstrap";
+
 
 const SelectRating = () => {
-    
+
 
     return (
         <Form.Select

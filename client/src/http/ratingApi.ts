@@ -1,8 +1,10 @@
 import {$host} from "./index";
-class RatingApi {
-    public async fetchRating(deviceId: string) {
 
-        const {data} = await $host.get(`api/info/${deviceId}`);
+class RatingApi {
+    public async fetchRating(deviceId) {
+
+        const data = await $host.get(`api/rating/?deviceId=${deviceId}`);
+
         return data;
     }
 }
