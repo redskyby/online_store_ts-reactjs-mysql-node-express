@@ -6,6 +6,7 @@ import DeviceApi from "../http/deviceApi";
 import {RingLoader} from "react-spinners";
 import brandInfoApi from "../http/brandInfoApi";
 import {isEmpty} from "lodash";
+import SelectRating from "../components/selectForm/SelectRating";
 
 
 const DevicePage = () => {
@@ -48,17 +49,18 @@ const DevicePage = () => {
                 <Col md={4}>
                     <Row className={'d-flex flex-column align-items-center '}>
                         <h2 style={{textAlign: "center"}}>{device.name}</h2>
-                        <div
-                            className={"d-flex align-items-center justify-content-center"}
-                            style={{
-                                background: `url(${BigStar}) no-repeat center center`,
-                                width: 240, height: 240,
-                                backgroundSize: "cover",
-                                fontSize: 64
-                            }}
-                        >
-                            {device.rating}
-                        </div>
+                        {/*<div*/}
+                        {/*    className={"d-flex align-items-center justify-content-center"}*/}
+                        {/*    style={{*/}
+                        {/*        background: `url(${BigStar}) no-repeat center center`,*/}
+                        {/*        width: 240, height: 240,*/}
+                        {/*        backgroundSize: "cover",*/}
+                        {/*        fontSize: 64*/}
+                        {/*    }}*/}
+                        {/*>*/}
+                        {/*    {device.rating}*/}
+                        {/*</div>*/}
+                        <SelectRating/>
                     </Row>
                 </Col>
                 <Col md={4}>
