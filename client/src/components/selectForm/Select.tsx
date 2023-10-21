@@ -26,7 +26,6 @@ const Select = () => {
                     className={'d-flex flex-row justify-content-start align-items-center'}
                 >
                     <Form.Select
-
                         style={{cursor: "pointer"}}
                         aria-label={'Сколько товаров вы хотите видеть?'}
                         onChange={handleSelectChange}
