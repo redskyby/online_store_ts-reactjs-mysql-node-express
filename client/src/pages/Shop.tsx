@@ -32,7 +32,7 @@ const Shop = () => {
             dispatch(SET_BRANDS(data))
         }).catch(e => console.log(e.message))
 
-        DeviceApi.fetchDevices(null, null, 1, 3).then(data => {
+        DeviceApi.fetchDevices(null, null, 1, 10).then(data => {
             dispatch(SET_DEVICES(data.rows));
             dispatch(SET_PAGINATION_TOTAL_COUNT(data.count));
         }).catch(e => console.log(e.message))
@@ -41,11 +41,11 @@ const Shop = () => {
 
 
     useEffect(() => {
-        DeviceApi.fetchDevices(selectedType.id, selectedBrands.id, pageFromRedux, 3).then(data => {
+        DeviceApi.fetchDevices(selectedType.id, selectedBrands.id, pageFromRedux, limit).then(data => {
             dispatch(SET_DEVICES(data.rows));
             dispatch(SET_PAGINATION_TOTAL_COUNT(data.count));
         }).catch(e => console.log(e.message));
-    }, [pageFromRedux, selectedType.id, selectedBrands.id])
+    }, [pageFromRedux, selectedType.id, selectedBrands.id , limit])
 
     return (
         <Container>
