@@ -1,5 +1,5 @@
 import React from 'react';
-import {Card, Row} from 'react-bootstrap';
+import {Card, Container, Row} from 'react-bootstrap';
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../redux";
 import {SET_SELECTED_BRAND} from '../redux/slice/deviceSlice';
@@ -10,21 +10,23 @@ const BrandBar = () => {
     const dispatch = useDispatch();
 
     return (
-        <Row className={'d-flex flex-row'}>
-            {
-                brands.map(brand =>
-                    <Card
-                        style={{cursor: "pointer"}}
-                        className={"p-3 w-auto"}
-                        key={brand.id}
-                        onClick={() => dispatch(SET_SELECTED_BRAND(brand))}
-                        border={brand.id === selectedBrand.id ? "danger" : "light"}
-                    >
-                        {brand.name}
-                    </Card>
-                )
-            }
-        </Row>
+        <Container>
+            <Row className={'d-flex flex-row'}>
+                {
+                    brands.map(brand =>
+                        <Card
+                            style={{cursor: "pointer"}}
+                            className={"p-3 w-auto"}
+                            key={brand.id}
+                            onClick={() => dispatch(SET_SELECTED_BRAND(brand))}
+                            border={brand.id === selectedBrand.id ? "danger" : "light"}
+                        >
+                            {brand.name}
+                        </Card>
+                    )
+                }
+            </Row>
+        </Container>
     );
 };
 
