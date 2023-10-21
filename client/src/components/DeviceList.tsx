@@ -3,14 +3,13 @@ import {useSelector} from "react-redux";
 import {RootState} from "../redux";
 import {Row} from "react-bootstrap";
 import DeviceItem from "./DeviceItem";
-import Select from "./selectForm/Select";
+import SelectCountItems from "./selectForm/SelectCountItems";
 
 const DeviceList = () => {
     const devices = useSelector((state: RootState) => state.isDeviceToolkit.devices);
-
     return (
         <Row className={"d-flex"}>
-            <Select/>
+            <SelectCountItems/>
             {
                 devices.map(device =>
                     <DeviceItem key={device.id} {...device}/>

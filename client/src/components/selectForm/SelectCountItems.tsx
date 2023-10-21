@@ -3,7 +3,7 @@ import {Col, Container, Form, Row} from "react-bootstrap";
 import {useDispatch} from "react-redux";
 import {SET_PAGINATION_LIMIT} from "../../redux/slice/paginationSlice";
 
-const Select = () => {
+const SelectCountItems = () => {
     const [countItems, setCountItems] = useState<number>(5)
     const dispatch = useDispatch();
 
@@ -39,4 +39,4 @@ const Select = () => {
     );
 };
 
-export default Select;
+export default SelectCountItems;
