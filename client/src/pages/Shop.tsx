@@ -26,16 +26,16 @@ const Shop = () => {
     useEffect(() => {
         TypeApi.fetchTypes().then(data => {
             dispatch(SET_TYPES(data))
-        }).catch(e => console.log(e.message))
+        }).catch(e => console.log(e.message));
 
         BrandApi.fetchBrands().then(data => {
             dispatch(SET_BRANDS(data))
-        }).catch(e => console.log(e.message))
+        }).catch(e => console.log(e.message));
 
         DeviceApi.fetchDevices(null, null, 1, 10).then(data => {
             dispatch(SET_DEVICES(data.rows));
             dispatch(SET_PAGINATION_TOTAL_COUNT(data.count));
-        }).catch(e => console.log(e.message))
+        }).catch(e => console.log(e.message));
 
     }, [])
 

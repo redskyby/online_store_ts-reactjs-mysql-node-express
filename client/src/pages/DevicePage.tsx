@@ -18,19 +18,22 @@ const DevicePage = () => {
     const [info, setInfo] = useState<Array<{ id: number; title?: string; description?: string }>>([]);
     const [rating, setRating] = useState(0);
 
-    console.log(device);
+
+
     useEffect(() => {
         if (Object.entries(device).length === 0) {
             DeviceApi.fetchOneDevice(id!).then(data => {
                 setDevice(data);
                 setLoading(false);
             }).catch(e => console.log(e.message));
+
             brandInfoApi.fetchInfoBrand(id!).then(data => {
                 setInfo(data);
             }).catch(e => console.log(e.message));
+
             ratingApi.fetchRating(id!).then(data => {
                 setDevice( device => ({...device, rating : data.data?.rate}))
-            }).catch(e => console.log(e.message))
+            }).catch(e => console.log(e.message));
         } else {
             setLoading(false);
         }
@@ -66,7 +69,7 @@ const DevicePage = () => {
                         >
                             {device.rating || rating}
                         </div>
-                        <SelectRating/>
+                        <SelectRating id={id} setRating={setRating}/>
                     </Row>
                 </Col>
                 <Col md={4}>

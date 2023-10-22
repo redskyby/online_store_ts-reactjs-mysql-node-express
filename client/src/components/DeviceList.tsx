@@ -7,6 +7,7 @@ import SelectCountItems from "./selectForm/SelectCountItems";
 
 const DeviceList = () => {
     const devices = useSelector((state: RootState) => state.isDeviceToolkit.devices);
+
     return (
         <Row className={"d-flex"}>
             <SelectCountItems/>

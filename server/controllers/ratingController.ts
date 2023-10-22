@@ -12,12 +12,12 @@ class RatingController {
 
     async getRating(req: Request, res: Response) {
         try {
-            const {userId, deviceId} = req.query;
+            const {deviceId} = req.query;
             const rate = await models.Rating.findOne({
                 where: {deviceId}
             });
             return res.json(rate);
-        }catch (e : any) {
+        } catch (e: any) {
             res.json(e.message);
         }
     }
