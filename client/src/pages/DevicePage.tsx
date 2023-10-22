@@ -19,7 +19,6 @@ const DevicePage = () => {
     const [rating, setRating] = useState(0);
 
 
-
     useEffect(() => {
         if (Object.entries(device).length === 0) {
             DeviceApi.fetchOneDevice(id!).then(data => {
@@ -32,7 +31,7 @@ const DevicePage = () => {
             }).catch(e => console.log(e.message));
 
             ratingApi.fetchRating(id!).then(data => {
-                setDevice( device => ({...device, rating : data.data?.rate}))
+                setDevice(device => ({...device, rating: data.data?.rate}))
             }).catch(e => console.log(e.message));
         } else {
             setLoading(false);
@@ -69,7 +68,7 @@ const DevicePage = () => {
                         >
                             {device.rating || rating}
                         </div>
-                        <SelectRating id={id} setRating={setRating}/>
+                        {(device.rating === undefined || device.rating === 0 ) && <SelectRating id={id} setRating={setRating}/>}
                     </Row>
                 </Col>
                 <Col md={4}>
