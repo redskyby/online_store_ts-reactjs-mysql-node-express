@@ -7,8 +7,6 @@ const SelectRating = ({id , setRating}) => {
 
     const [rate, setRate] = useState(0);
 
-
-
     function makeRate() {
         ratingApi.createRating(id , rate).then(data =>{
             setRating(data.data.rate);
@@ -23,7 +21,6 @@ const SelectRating = ({id , setRating}) => {
                         style={{cursor: "pointer"}}
                         aria-label={'Сколько товаров вы хотите видеть?'}
                         onChange={e => setRate(Number(e.target.value))}
-
                     >
                         <option value={1}>1</option>
                         <option value={2}>2</option>

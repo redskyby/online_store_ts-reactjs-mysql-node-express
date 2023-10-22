@@ -1,17 +1,20 @@
 import React, {useEffect, useState} from 'react';
 import {Button, Card, Col, Container, Image, Row} from 'react-bootstrap';
 import BigStar from '../assets/bigStar.png';
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import DeviceApi from "../http/deviceApi";
 import {RingLoader} from "react-spinners";
 import brandInfoApi from "../http/brandInfoApi";
 import {isEmpty} from "lodash";
 import SelectRating from "../components/selectForm/SelectRating";
 import ratingApi from "../http/ratingApi";
+import {BASKET_ROUTE} from "../utils/const";
 
 
 const DevicePage = () => {
     const {id} = useParams<string>();
+
+    const history = useNavigate();
 
     const [device, setDevice] = useState({} as { id: number, name: string, price: number, rating: number, img: string })
     const [loading, setLoading] = useState(true);
@@ -79,7 +82,10 @@ const DevicePage = () => {
                         <h3>От: {device.price} руб.</h3>
                         <Button
                             variant={"outline-dark"}
-                        >Добавить в корзину</Button>
+                            onClick={()=> {
+                                history(BASKET_ROUTE);
+                            }}
+                        >Перейти в корзину</Button>
                     </Card>
                 </Col>
             </Row>
