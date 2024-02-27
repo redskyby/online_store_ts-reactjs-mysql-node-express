@@ -11,7 +11,7 @@ class deviceController {
             let {name, price, brandId, typeId, info} = req.body;
             const img = req.files?.img as UploadedFile;
             let fileName: string = uuidv4() + ".jpg";
-            await img.mv(path.resolve(__dirname, '..', 'static', fileName));
+            await img.mv(path.resolve(__dirname, '../', 'static', fileName));
 
             const device = await models.Device.create(
                 {name, price, brandId, typeId, info, img: fileName}
